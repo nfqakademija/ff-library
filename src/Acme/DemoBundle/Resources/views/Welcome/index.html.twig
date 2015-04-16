@@ -1,8 +1,4 @@
-{% extends 'AcmeDemoBundle::layout.html.twig' %}
-
-{% block title %}Symfony - Welcome{% endblock %}
-
-{% block content_header '' %}
+{% extends '::base.html.twig' %}
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
