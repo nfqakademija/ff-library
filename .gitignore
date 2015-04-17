@@ -12,3 +12,4 @@
 /composer.phar
 /.idea/
 .DS_Store
+/app/config/parameters.yml
