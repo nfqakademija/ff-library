@@ -1,0 +1,312 @@
+{# src/F4/LibraryBundle/Resources/views/Page/index.html.twig #}
+{% extends 'F4LibraryBundle::layout.html.twig' %}
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+    <div class="panel with-nav-tabs panel-default">
+        <div class="tab-selection">
+            <ul class="nav nav-tabs">
+                <li class="active"><a style="border:0" href="#tab1default"
+                                      data-toggle="tab">Skaitomiausios</a></li>
+                <li><a style="border:0" href="#tab2default" data-toggle="tab">Naujausios</a>
+                </li>
+                <li><a style="border:0" href="#tab3default" data-toggle="tab">Greitai
+                        atsilaisvins</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1default">
+                    <table width="100%" align="center" cellpadding="4" cellspacing="4">
+                        <tr>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786098105209_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Tigro beieškant (2009)</h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786094660887_As_esu_Livija_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Aš esu Livija (2014)</h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9789955165347-Tigrai-raudoname-ore_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Tigrai raudoname ore (2012)</h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_Seseri-metai-Saigone_th.png">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Šešeri metai Saigone.</h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786094680243_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Galutinė kelionė</h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_Visa-tiesa-apie-Hario-Kveberto-byla_th.png">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Visa tiesa apie Hario Kveberto
+                                                    bylą </h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9789955165460-Nezinomas-melynas-atsp_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Nežinomas mėlynas atspalvis</h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_Senoves-Graikijos-legendos-ir-mitai_th.png">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Senovės Graikijos legendos ir
+                                                    mitai </h4>
+                                                <h5>Mons Kallentoft</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786099551876_Rudens-auka_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Rudens auka</h4>
+                                                <h5>Nikolajus Kunas</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786098112405_Kaip-nugalu0117ti_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Kaip nugalėti. Vienuolio...</h4>
+                                                <h5>Liza Klaussmann</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9789955345350_Anusauskas_KGB_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>KGB. Visiškai slaptai</h4>
+                                                <h5>Mons Kallentoft</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="33%">
+                                <table class="table table-striped table-bordered"
+                                       width="100%">
+                                    <tr>
+                                        <td rowspan="2" width="125" align="center">
+                                            <img height="150"
+                                                 src="http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9789955238102-Hemingway_kamskambinavarpai_72max_th.jpg">
+                                        </td>
+                                        <td valign="top">
+                                            <div class="book-information">
+                                                <h4>Kam skambina varpai</h4>
+                                                <h5>Nikolajus Kunas</h5>
+                                            </div>
+                                            <button type="button"
+                                                    class="btn btn-default btn-sm pull-right">
+                                                                            <span class="glyphicon glyphicon-calendar"
+                                                                                  aria-hidden="true"></span> Rezervuoti
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="tab2default">Informacija ruošiama...</div>
+                <div class="tab-pane fade" id="tab3default">Informacija ruošiama...</div>
+            </div>
+            <hr>
+            <ul class="pager">
+                <li class="previous"><a href="#"><i style="font-size:10px"
+                                                    class="glyphicon glyphicon-chevron-up"> </i>
+                        Atgal</a></li>
+                <li>1-12 (60)</li>
+                <li class="next"><a href="#">Pirmyn <i style="font-size:10px"
+                                                       class="glyphicon glyphicon-chevron-down"> </i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
