@@ -1,0 +1,16 @@
+{% extends 'F4LibraryBundle::layout.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+    <article class="book">
+        <header>
+            <h1>{{ book.releaseDate|date("Y-m-d") }}</h1>
+            <h2>{{ book.title }}</h2>
+        </header>
+        <img src="{{ asset(['images/', book.image]|join) }}" alt="{{ book.title }} image not found" class="large" />
+        <div>
+            <p>{{ book.description }}</p>
+        </div>
+    </article>
+{% endblock %}
