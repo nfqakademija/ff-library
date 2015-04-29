@@ -21,7 +21,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "twbs/bootstrap": "~3.3",
         "fzaninotto/faker": "~1.4",
-        "friendsofsymfony/user-bundle": "~1.3"
+        "friendsofsymfony/user-bundle": "~1.3",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/data-fixtures" : "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
