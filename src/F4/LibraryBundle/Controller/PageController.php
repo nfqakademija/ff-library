@@ -25,12 +25,30 @@ class PageController extends Controller
             return new Response('This is not ajax!', 400);
         }
 
-        $data = $request->request->get('type');
-
+        $data = json_decode($request->getContent(), true);
         $em = $this->getDoctrine()->getManager();
-        $books = $em->getRepository('F4LibraryBundle:Book')->getSortedBooks();
+        sleep(1);
 
-        return new JsonResponse(array('message' => $data,
+        switch ($data['type']) {
+
+            case 'popular':
+                $books = $em->getRepository('F4LibraryBundle:Book')->getBooks();
+                break;
+
+            case 'newest':
+                $books = $em->getRepository('F4LibraryBundle:Book')->getSortedBooks();
+                break;
+
+            case 'soon':
+                $books = $em->getRepository('F4LibraryBundle:Book')->getSortedBooks();
+                break;
+
+            default:
+                $books = $em->getRepository('F4LibraryBundle:Book')->getBooks();
+                break;
+        }
+
+        return new JsonResponse(array('message' => $data['type'],
             'list' => $this->renderView('F4LibraryBundle:Book:list.html.twig',
                 array(
                     'books' => $books

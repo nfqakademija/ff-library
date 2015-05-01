@@ -10,13 +10,15 @@ function initAjaxForm() {
             data: JSON.stringify({
                 "type": $(this).attr('data-type')
             }),
+            beforeSend: function (xhr) {
+                $(tab).html('<center>Prašome palaukti...</center>');
+            },
             dataType: "json",
             contentType: "application/json"
         })
             .done(function (data) {
                 if (typeof data.message !== 'undefined') {
                     $(tab).html(data.list);
-                    //alert(data.message);
                 }
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
