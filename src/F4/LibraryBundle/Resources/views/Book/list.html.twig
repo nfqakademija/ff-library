@@ -1,0 +1,26 @@
+<div class="float-wrap">
+    {% for book in books %}
+        <div class="book-floater">
+            <div class="left-side">
+                <img src="{{ book.image }}" height="150">
+            </div>
+            <div class="right-side">
+                <p class="book-info">
+                    <span class="book-title">{{ book.title }}</span>
+                    <span class="book-author">{{ book.author }}</span>
+                    <span class="release-date">{{ book.releaseDate|date("Y-m-d") }}</span>
+                </p>
+
+                <p class="button-pos">
+                    <a href="{{ path('F4LibraryBundle_book', { 'id': book.id }) }}" role="button"
+                       class="btn btn-default btn-sm pull-right">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        Rezervuoti
+                    </a>
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <p>Kngyų nerasta.</p>
+    {% endfor %}
+</div>

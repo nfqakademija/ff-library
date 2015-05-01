@@ -3,25 +3,23 @@
 {% block title %}{{ book.title }}{% endblock %}
 
 {% block content %}
-    <!-- content -->
-    <!-- main col left -->
     <div class="col-sm-4">
 
         <div class="panel panel-default">
             <div class="panel-heading"><h4>{{ book.title }}</h4></div>
             <div class="panel-body">
                 <img src="{{ book.image }}" alt="{{ book.title }}" align="left" style="margin-right: 15px;">
+
                 <p>
-                    {{ book.title}}<br />
-                    {{ book.author }}<br />
-                    {{ book.releaseDate|date("Y") }}<br />
-                    {{ book.isbn }}<br />
+                    {{ book.title }}<br/>
+                    {{ book.author }}<br/>
+                    {{ book.releaseDate|date("Y") }}<br/>
+                    {{ book.isbn }}<br/>
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- main col right -->
     <div class="col-sm-8">
 
         <div class="panel panel-default">

@@ -6,53 +6,18 @@
     <div class="panel with-nav-tabs panel-default">
         <div class="tab-selection">
             <ul class="nav nav-tabs">
-                <li class="active"><a style="border:0" href="#tab1default" data-toggle="tab">Skaitomiausios</a></li>
-                <li><a style="border:0" href="#tab2default" data-toggle="tab">Naujausios</a></li>
-                <li><a style="border:0" href="#tab3default" data-toggle="tab">Greitai atsilaisvins</a></li>
+                <li class="active"><a style="border:0" href="#tab1default" data-type="popular" data-link="{{ path('F4LibraryBundle_ajax_call') }}" data-toggle="tab" id="book-tab">Skaitomiausios</a></li>
+                <li><a style="border:0" href="#tab2default" data-type="newest" data-link="{{ path('F4LibraryBundle_ajax_call') }}" data-toggle="tab" id="book-tab">Naujausios</a></li>
+                <li><a style="border:0" href="#tab3default" data-type="soon" data-link="{{ path('F4LibraryBundle_ajax_call') }}" data-toggle="tab" id="book-tab">Greitai atsilaisvins</a></li>
             </ul>
         </div>
         <div class="panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab1default">
-                    <div class="float-wrap">
-                        {% for book in books %}
-                            <div class="book-floater">
-                                <div class="left-side">
-                                    <img src="{{ book.image }}" height="150">
-                                </div>
-                                <div class="right-side">
-                                    <p class="book-info">
-                                        <span class="book-title">{{ book.title }}</span>
-                                        <span class="book-author">{{ book.author }}</span>
-                                        <span class="release-date">{{ book.releaseDate|date("Y-m-d") }}</span>
-                                    </p>
-
-                                    <p class="button-pos">
-                                        <a href="{{ path('F4LibraryBundle_book', { 'id': book.id }) }}" role="button" class="btn btn-default btn-sm pull-right">
-                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                            Rezervuoti
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        {% else %}
-                            <p>Kngyų nerasta.</p>
-                        {% endfor %}
-                    </div>
+                    {% include 'F4LibraryBundle:Book:list.html.twig' with {'books': books} %}
                 </div>
-                <div class="tab-pane fade" id="tab2default">
-                    <div class="outer">
-                        <div class="float-wrap">
-                            <div class="left-floater">
-                                One
-                                <button type="button" class="btn btn-default btn-sm pull-right">
-                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Rezervuoti
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="tab3default">Informacija ruošiama...</div>
+                <div class="tab-pane fade" id="tab2default"></div>
+                <div class="tab-pane fade" id="tab3default"></div>
             </div>
             <hr>
             <ul class="pager">
@@ -64,4 +29,10 @@
             </ul>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        initAjaxForm();
+    </script>
 {% endblock %}

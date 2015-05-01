@@ -5,15 +5,15 @@ F4LibraryBundle_homepage:
     requirements:
         _method:  GET
 
-F4LibraryBundle_contact:
-    pattern:  /contact
-    defaults: { _controller: F4LibraryBundle:Page:contact }
-    requirements:
-        _method:  GET|POST
-
 F4LibraryBundle_book:
     pattern:  /book/{id}
     defaults: { _controller: F4LibraryBundle:Book:show }
     requirements:
         _method:  GET
         id: \d+
+
+F4LibraryBundle_ajax_call:
+  pattern:  /book/ajax/call
+  defaults: { _controller: F4LibraryBundle:Page:ajax }
+  requirements:
+        _method:  GET|POST
