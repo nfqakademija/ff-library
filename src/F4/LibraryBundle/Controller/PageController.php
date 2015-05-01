@@ -4,22 +4,13 @@
 namespace F4\LibraryBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use F4\LibraryBundle\Entity\Enquiry;
-use F4\LibraryBundle\Form\EnquiryType;
 
 class PageController extends Controller
 {
     public function indexAction()
     {
-        $em = $this->getDoctrine()
-            ->getManager();
-
-        $books = $em->createQueryBuilder()
-            ->select('b')
-            ->from('F4LibraryBundle:Book',  'b')
-            ->addOrderBy('b.releaseDate', 'DESC')
-            ->getQuery()
-            ->getResult();
+        $em = $this->getDoctrine()->getManager();
+        $books = $em->getRepository('F4LibraryBundle:Book')->getBooks();
 
         return $this->render('F4LibraryBundle:Page:index.html.twig', array(
             'books' => $books

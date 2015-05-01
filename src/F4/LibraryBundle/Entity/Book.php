@@ -4,7 +4,7 @@ namespace F4\LibraryBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="F4\LibraryBundle\Entity\BookRepository")
  * @ORM\Table(name="book")
  */
 class Book
