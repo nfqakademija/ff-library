@@ -16,15 +16,19 @@ function initBookList() {
 }
 
 function ajaxLoad(url, tab) {
+    $('.tab-content').addClass('hidden');
+
     $.ajax({
         type: 'GET',
         url: url,
         beforeSend: function () {
-            $(tab).html('<center>Prašome palaukti...</center>');
+            $('.spinner').removeClass('hidden');
         }
     })
         .done(function (data) {
+            $('.spinner').addClass('hidden');
             $(tab).html(data.list);
+            $('.tab-content').removeClass('hidden');
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
