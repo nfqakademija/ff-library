@@ -24,3 +24,10 @@
         <p>Kngyų nerasta.</p>
     {% endfor %}
 </div>
+
+{% if pages > 1 %}
+    <hr>
+    <ul class="pager">
+        {% include 'F4LibraryBundle:Book:pagination.html.twig' with {'pages': pages} %}
+    </ul>
+{% endif %}

@@ -1,32 +1,35 @@
-function initAjaxForm() {
-    $(document).on('click', '#book-tab', function (e) {
-        var tab = $(this).attr('href');
+function initBookList() {
+    var loader = $('#ajaxList').first();
+    ajaxLoad(loader.attr('data-href'), loader.attr('href'));
 
+    $(document).on('click', '#ajaxList', function (e) {
         e.preventDefault();
+        var dataLink = $(this).attr('data-href');
+        var tab = $('a[data-href="' + dataLink + '"]').attr('href');
 
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('data-link'),
-            data: JSON.stringify({
-                "type": $(this).attr('data-type')
-            }),
-            beforeSend: function (xhr) {
-                $(tab).html('<center>Prašome palaukti...</center>');
-            },
-            dataType: "json",
-            contentType: "application/json"
-        })
-            .done(function (data) {
-                if (typeof data.message !== 'undefined') {
-                    $(tab).html(data.list);
-                }
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                alert(errorThrown);
-            });
+        if (tab.length > 1) {
+            ajaxLoad(dataLink, tab);
+        } else {
+            ajaxLoad(dataLink, $('.tab-pane.active'));
+        }
     });
 }
 
+function ajaxLoad(url, tab) {
+    $.ajax({
+        type: 'GET',
+        url: url,
+        beforeSend: function () {
+            $(tab).html('<center>Prašome palaukti...</center>');
+        }
+    })
+        .done(function (data) {
+            $(tab).html(data.list);
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        });
+}
 
 $(document).ready(function () {/* off-canvas sidebar toggle */
 

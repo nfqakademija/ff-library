@@ -5,21 +5,35 @@ use Doctrine\ORM\EntityRepository;
 
 class BookRepository extends EntityRepository
 {
-    public function getBooks()
-    {
-        $q = $this->createQueryBuilder('b')
-            ->select('b')
-            ->addOrderBy('b.releaseDate', 'DESC')
-            ->getQuery();
-        return $q->getResult();
+    public function getBookList($param) {
+        $p['order'] = $param['order'];
+        $p['where'] = 'id > 0';
+        $p['limit'] = $param['limit'];
+        $p['first'] = $param['first'];
+
+        $q = $this->getBookListQuery('b', $p['order'], $p['where'], $p['limit'], $p['first']);
+        return $q->getQuery()->getResult();
     }
 
-    public function getSortedBooks()
+    public function getBookListQnt($param) {
+        $p['order'] = $param['order'];
+        $p['where'] = 'id > 0';
+        $p['limit'] = 60;
+        $p['first'] = 0;
+
+        $q = $this->getBookListQuery('count(b)',$p['order'], $p['where'], $p['limit'], $p['first']);
+        return $q->getQuery()->getSingleScalarResult();
+    }
+
+    private function getBookListQuery($select, $order, $where = "id > 0", $limit = 9, $first = 0)
     {
         $q = $this->createQueryBuilder('b')
-            ->select('b')
-            ->addOrderBy('b.title', 'ASC')
-            ->getQuery();
-        return $q->getResult();
+            ->select($select)
+            ->where('b.' . $where)
+            ->addOrderBy('b.' . $order, 'ASC')
+            ->setMaxResults($limit)
+            ->setFirstResult($first);
+
+        return $q;
     }
 }

@@ -9,7 +9,6 @@ class BookController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $book = $em->getRepository('F4LibraryBundle:Book')->find($id);
 
         if (!$book) {
@@ -17,7 +16,7 @@ class BookController extends Controller
         }
 
         return $this->render('F4LibraryBundle:Book:details.html.twig', array(
-            'book'      => $book,
+            'book' => $book,
         ));
     }
 }

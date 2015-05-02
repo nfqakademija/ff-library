@@ -6,33 +6,25 @@
     <div class="panel with-nav-tabs panel-default">
         <div class="tab-selection">
             <ul class="nav nav-tabs">
-                <li class="active"><a style="border:0" href="#tab1default" data-type="popular" data-link="{{ path('F4LibraryBundle_ajax_call') }}" data-toggle="tab" id="book-tab">Skaitomiausios</a></li>
-                <li><a style="border:0" href="#tab2default" data-type="newest" data-link="{{ path('F4LibraryBundle_ajax_call') }}" data-toggle="tab" id="book-tab">Naujausios</a></li>
-                <li><a style="border:0" href="#tab3default" data-type="soon" data-link="{{ path('F4LibraryBundle_ajax_call') }}" data-toggle="tab" id="book-tab">Greitai atsilaisvins</a></li>
+                <li class="active"><a style="border:0" href="#tab1default" data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'popular', page: 1, limit: 3}) }}" data-toggle="tab" id="ajaxList">Skaitomiausios</a></li>
+                <li><a style="border:0" href="#tab2default" data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'newest', page: 1, limit: 9}) }}" data-toggle="tab" id="ajaxList">Naujausios</a></li>
+                <li><a style="border:0" href="#tab3default" data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'soon', page: 1, limit: 9}) }}" data-toggle="tab" id="ajaxList">Greitai atsilaisvins</a></li>
             </ul>
         </div>
         <div class="panel-body">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab1default">
-                    {% include 'F4LibraryBundle:Book:list.html.twig' with {'books': books} %}
+                    {% include 'F4LibraryBundle:Book:list.html.twig' with {'books': books, 'pages': pages} %}
                 </div>
                 <div class="tab-pane fade" id="tab2default"></div>
                 <div class="tab-pane fade" id="tab3default"></div>
             </div>
-            <hr>
-            <ul class="pager">
-                <li class="previous"><a href="#"><i style="font-size:10px" class="glyphicon glyphicon-chevron-up"> </i>
-                        Atgal</a></li>
-                <li>1-12 (60)</li>
-                <li class="next"><a href="#">Pirmyn <i style="font-size:10px"
-                                                       class="glyphicon glyphicon-chevron-down"> </i></a></li>
-            </ul>
         </div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script>
-        initAjaxForm();
+        initBookList();
     </script>
 {% endblock %}
