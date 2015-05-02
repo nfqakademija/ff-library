@@ -3,24 +3,43 @@
 {% block title %}{{ book.title }}{% endblock %}
 
 {% block content %}
-    <div class="col-sm-4">
+    <div class="col-sm-3">
 
         <div class="panel panel-default">
-            <div class="panel-heading"><h4>{{ book.title }}</h4></div>
-            <div class="panel-body">
-                <img src="{{ book.image }}" alt="{{ book.title }}" align="left" style="margin-right: 15px;">
+            <img src="//d.gr-assets.com/books/1425546741l/25076011.jpg" alt="{{ book.title }}" width="100%">
+        </div>
 
-                <p>
-                    {{ book.title }}<br/>
-                    {{ book.author }}<br/>
-                    {{ book.releaseDate|date("Y") }}<br/>
-                    {{ book.isbn }}<br/>
+        <div class="panel panel-default">
+            <div class="panel-heading"><h4>Autoriai</h4></div>
+            <div class="panel-body">
+                <p class="author">
+                    <img src="https://d.gr-assets.com/authors/1395148656p2/6538453.jpg" align="left">
+                    <span>{{ book.author }}</span>
+                    <span class="role">translator</span>
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-sm-9">
+
+        <div class="well book-title">
+            <div class="row row-no-padding row-vertical-align">
+                <div class="col-md-8">
+                    <h4>{{ book.title }}
+                        <small>({{ book.releaseDate|date("Y") }})</small>
+                    </h4>
+                    <div class="btn-group-xs">
+                        <button type="button" class="btn btn-info">Grožinė literatūra</button>
+                        <button type="button" class="btn btn-info">Detektyvas</button>
+                        <button type="button" class="btn btn-info">Siaubo</button>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right col-middle">
+                    <button type="button" class="btn btn-success btn-sm">Rezervuoti knygą</button>
+                </div>
+            </div>
+        </div>
 
         <div class="panel panel-default">
             <div class="panel-heading"><h4>Aprašymas</h4></div>

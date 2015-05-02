@@ -124,8 +124,7 @@ hr {
 }
 
 #sidebar {
-    padding: 0px;
-    padding-top: 15px;
+    padding: 15px 0 0 0;
 }
 
 #sidebar, #sidebar a, #sidebar-footer a {
@@ -146,9 +145,7 @@ hr {
     color: #168CCC;
     height: 28px;
     width: 40px;
-    margin: 9px;
-    margin-right: 2px;
-    margin-left: 15px;
+    margin: 9px 2px 9px 15px;
     font-size: 20px;
     font-weight: 700;
     text-align: center;
@@ -230,6 +227,7 @@ h1, h2, h3 {
 .panel-default .panel-heading {
     background-color: #f9fafb;
     color: #555555;
+    padding: 5px 15px;
 }
 
 .col-sm-9.full {
@@ -248,7 +246,7 @@ h1, h2, h3 {
 }
 
 .modal-body {
-    padding: 0px;
+    padding: 0;
 }
 
 .modal-body textarea.form-control {
@@ -348,7 +346,7 @@ span.n-counter {
 .book-floater .button-pos {
     position: absolute;
     right: 5px;
-    bottom: 0px;
+    bottom: 0;
 }
 
 .book-floater .left-side {
@@ -366,7 +364,7 @@ span.n-counter {
 }
 
 .book-floater .right-side p.book-info span {
-     display: block;
+    display: block;
 }
 
 .book-floater .right-side p.book-info span.book-title {
@@ -383,7 +381,7 @@ span.n-counter {
     font-size: 12px;
 }
 
-.panel-body {
+.ajaxList {
     min-height: 490px;
 }
 
@@ -426,21 +424,74 @@ span.n-counter {
 }
 
 @-webkit-keyframes stretchdelay {
-    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
-    20% { -webkit-transform: scaleY(1.0) }
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4)
+    }
+    20% {
+        -webkit-transform: scaleY(1.0)
+    }
 }
 
 @keyframes stretchdelay {
     0%, 40%, 100% {
         transform: scaleY(0.4);
         -webkit-transform: scaleY(0.4);
-    }  20% {
-           transform: scaleY(1.0);
-           -webkit-transform: scaleY(1.0);
-       }
+    }
+    20% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+    }
 }
 
 li a.disabled {
     opacity: 0.2;
     pointer-events: none;
+}
+
+span.paging {
+    font-size: 12px;
+}
+
+p.author span {
+    display: block;
+}
+
+p.author span.role {
+    font-style: italic;
+    font-size: 12px;
+}
+
+p.author img {
+    width: 50px;
+    height: 66px;
+    margin-right: 10px;
+    border: 1px solid #5e5e5e;
+}
+
+div.book-title {
+    padding: 5px 15px;
+}
+
+div.book-title h4 {
+    font-size: 22px;
+}
+
+.row-no-padding [class*="col"] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.row-vertical-align {
+    display: table;
+    width: 100%;
+    /* fix overflow */
+    table-layout: fixed;
+}
+.row-vertical-align [class*='col'] {
+    display: table-cell;
+    float: none !important;
+}
+
+.row-vertical-align .col-middle {
+    vertical-align: middle;
 }
