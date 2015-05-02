@@ -36,6 +36,33 @@ class BlogFixtures implements FixtureInterface
         $book3->setReleaseDate(new \DateTime());
         $manager->persist($book3);
 
+        $book4 = new Book();
+        $book4->setIsbn('9719955638119');
+        $book4->setTitle('Galutinė kelionė');
+        $book4->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing eletra electrify denim vel ports.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut velocity magna. Etiam vehicula nunc non leo hendrerit commodo. Vestibulum vulputate mauris eget erat congue dapibus imperdiet justo scelerisque. Nulla consectetur tempus nisl vitae viverra. Cras el mauris eget erat congue dapibus imperdiet justo scelerisque. Nulla consectetur tempus nisl vitae viverra. Cras elementum molestie vestibulum. Morbi id quam nisl. Praesent hendrerit, orci sed elementum lobortis, justo mauris lacinia libero, non facilisis purus ipsum non mi. Aliquam sollicitudin, augue id vestibulum iaculis, sem lectus convallis nunc, vel scelerisque lorem tortor ac nunc. Donec pharetra eleifend enim vel porta.');
+        $book4->setImage('http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786094680243_th.jpg');
+        $book4->setAuthor('Mons Kallentoft');
+        $book4->setReleaseDate(new \DateTime());
+        $manager->persist($book4);
+
+        $book5 = new Book();
+        $book5->setIsbn('9719955638119');
+        $book5->setTitle('Galutinė kelionė');
+        $book5->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing eletra electrify denim vel ports.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut velocity magna. Etiam vehicula nunc non leo hendrerit commodo. Vestibulum vulputate mauris eget erat congue dapibus imperdiet justo scelerisque. Nulla consectetur tempus nisl vitae viverra. Cras el mauris eget erat congue dapibus imperdiet justo scelerisque. Nulla consectetur tempus nisl vitae viverra. Cras elementum molestie vestibulum. Morbi id quam nisl. Praesent hendrerit, orci sed elementum lobortis, justo mauris lacinia libero, non facilisis purus ipsum non mi. Aliquam sollicitudin, augue id vestibulum iaculis, sem lectus convallis nunc, vel scelerisque lorem tortor ac nunc. Donec pharetra eleifend enim vel porta.');
+        $book5->setImage('http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786094680243_th.jpg');
+        $book5->setAuthor('Mons Kallentoft');
+        $book5->setReleaseDate(new \DateTime());
+        $manager->persist($book5);
+
+        $book6 = new Book();
+        $book6->setIsbn('9719955638119');
+        $book6->setTitle('Galutinė kelionė');
+        $book6->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing eletra electrify denim vel ports.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut velocity magna. Etiam vehicula nunc non leo hendrerit commodo. Vestibulum vulputate mauris eget erat congue dapibus imperdiet justo scelerisque. Nulla consectetur tempus nisl vitae viverra. Cras el mauris eget erat congue dapibus imperdiet justo scelerisque. Nulla consectetur tempus nisl vitae viverra. Cras elementum molestie vestibulum. Morbi id quam nisl. Praesent hendrerit, orci sed elementum lobortis, justo mauris lacinia libero, non facilisis purus ipsum non mi. Aliquam sollicitudin, augue id vestibulum iaculis, sem lectus convallis nunc, vel scelerisque lorem tortor ac nunc. Donec pharetra eleifend enim vel porta.');
+        $book6->setImage('http://www.pegasas.lt/out/3/html/0/dyn_images/0/cdb_9786094680243_th.jpg');
+        $book6->setAuthor('Mons Kallentoft');
+        $book6->setReleaseDate(new \DateTime());
+        $manager->persist($book6);
+
         $manager->flush();
     }
 
