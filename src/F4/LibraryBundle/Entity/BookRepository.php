@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 class BookRepository extends EntityRepository
 {
     public function getBookList($param) {
+        $p = array();
         $p['order'] = $param['order'];
         $p['where'] = 'id > 0';
         $p['limit'] = $param['limit'];
@@ -16,6 +17,7 @@ class BookRepository extends EntityRepository
     }
 
     public function getBookListQnt($param) {
+        $p = array();
         $p['order'] = $param['order'];
         $p['where'] = 'id > 0';
         $p['limit'] = 60;

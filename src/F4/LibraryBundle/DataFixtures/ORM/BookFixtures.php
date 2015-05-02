@@ -5,7 +5,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use F4\LibraryBundle\Entity\Book;
 
-class BlogFixtures implements FixtureInterface
+class BookFixtures implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {

@@ -16,8 +16,6 @@ class AjaxController extends Controller
         }
 
         $qArgs = Array();
-
-        // Check type of list
         switch ($list) {
             case 'popular':
                 $qArgs['order'] = 'releaseDate';
@@ -36,26 +34,21 @@ class AjaxController extends Controller
                 break;
         }
 
-        // Check limit
         if ($limit % 3 == 0 && $limit < 100) {
             $qArgs['limit'] = $limit;
         } else {
             $qArgs['limit'] = 9;
         }
 
-        // Get books quantity
         $em = $this->getDoctrine()->getManager();
         $total = $em->getRepository('F4LibraryBundle:Book')->getBookListQnt($qArgs);
 
-
-        // Check pagination
         $pages = ceil($total / $qArgs['limit']);
 
         if ($page < 1 || $page > $pages) {
             $page = 1;
         }
 
-        // Set first
         $qArgs['first'] = $page * $qArgs['limit'] - $qArgs['limit'];
 
         $books = $em->getRepository('F4LibraryBundle:Book')->getBookList($qArgs);
