@@ -18,38 +18,38 @@ class AjaxController extends Controller
         $qArgs = Array();
         switch ($list) {
             case 'popular':
-                $qArgs['order'] = 'releaseDate';
+                $qArgs['addOrderBy'] = 'releaseDate';
                 break;
 
             case 'newest':
-                $qArgs['order'] = 'title';
+                $qArgs['addOrderBy'] = 'title';
                 break;
 
             case 'soon':
-                $qArgs['order'] = 'author';
+                $qArgs['addOrderBy'] = 'author';
                 break;
 
             default:
-                $qArgs['order'] = 'releaseDate';
+                $qArgs['addOrderBy'] = 'releaseDate';
                 break;
         }
 
         if ($limit % 3 == 0 && $limit < 100) {
-            $qArgs['limit'] = $limit;
+            $qArgs['setMaxResults'] = $limit;
         } else {
-            $qArgs['limit'] = 9;
+            $qArgs['setMaxResults'] = 9;
         }
 
         $em = $this->getDoctrine()->getManager();
-        $total = $em->getRepository('F4LibraryBundle:Book')->getBookListQnt($qArgs);
+        $total = $em->getRepository('F4LibraryBundle:Book')->getBookList($qArgs, 1);
 
-        $pages = ceil($total / $qArgs['limit']);
+        $pages = ceil($total / $qArgs['setMaxResults']);
 
         if ($page < 1 || $page > $pages) {
             $page = 1;
         }
 
-        $qArgs['first'] = $page * $qArgs['limit'] - $qArgs['limit'];
+        $qArgs['setFirstResult'] = $page * $qArgs['setMaxResults'] - $qArgs['setMaxResults'];
 
         $books = $em->getRepository('F4LibraryBundle:Book')->getBookList($qArgs);
         return new JsonResponse(array('list' => $this->renderView('F4LibraryBundle:Book:list.html.twig',

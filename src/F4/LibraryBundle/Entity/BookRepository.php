@@ -5,37 +5,33 @@ use Doctrine\ORM\EntityRepository;
 
 class BookRepository extends EntityRepository
 {
-    public function getBookList($param) {
-        $p = array();
-        $p['order'] = $param['order'];
-        $p['where'] = 'id > 0';
-        $p['limit'] = $param['limit'];
-        $p['first'] = $param['first'];
-
-        $q = $this->getBookListQuery('b', $p['order'], $p['where'], $p['limit'], $p['first']);
-        return $q->getQuery()->getResult();
-    }
-
-    public function getBookListQnt($param) {
-        $p = array();
-        $p['order'] = $param['order'];
-        $p['where'] = 'id > 0';
-        $p['limit'] = 60;
-        $p['first'] = 0;
-
-        $q = $this->getBookListQuery('count(b)',$p['order'], $p['where'], $p['limit'], $p['first']);
-        return $q->getQuery()->getSingleScalarResult();
-    }
-
-    private function getBookListQuery($select, $order, $where = "id > 0", $limit = 9, $first = 0)
+    public function getBookList($param, $count = null)
     {
-        $q = $this->createQueryBuilder('b')
-            ->select($select)
-            ->where('b.' . $where)
-            ->addOrderBy('b.' . $order, 'ASC')
-            ->setMaxResults($limit)
-            ->setFirstResult($first);
+        if (!array_key_exists('alias', $param))
+            $param['alias'] = 'b';
 
-        return $q;
+        $q = $this->createQueryBuilder($param['alias']);
+
+        if (false === is_null($count))
+            $q->select('count('.$param['alias'].')');
+        else
+            $q->select($param['alias']);
+
+        if (array_key_exists('where', $param))
+            $q->where($param['alias'].'.'.$param['where']);
+
+        if (array_key_exists('addOrderBy', $param))
+            $q->addOrderBy($param['alias'].'.'.$param['addOrderBy'], 'ASC');
+
+        if (array_key_exists('setMaxResults', $param))
+            $q->setMaxResults($param['setMaxResults']);
+
+        if (array_key_exists('setFirstResult', $param))
+            $q->setFirstResult($param['setFirstResult']);
+
+        if (false === is_null($count))
+            return $q->getQuery()->getSingleScalarResult();
+        else
+            return $q->getQuery()->getResult();
     }
 }
