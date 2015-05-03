@@ -2,9 +2,10 @@
 namespace F4\LibraryBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="F4\LibraryBundle\Entity\BookRepository")
+ * @ORM\Entity(repositoryClass="F4\LibraryBundle\Entity\Repository\BookRepository")
  * @ORM\Table(name="book")
  */
 class Book
@@ -40,6 +41,11 @@ class Book
      * @ORM\Column(type="text")
      */
     protected $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Quantity", mappedBy="book")
+     */
+    protected $quantities;
 
     /**
      * @ORM\Column(type="string", length=256)
@@ -192,5 +198,43 @@ class Book
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function addQuantities(Quantity $quantity)
+    {
+        $this->quantities[] = $quantity;
+    }
+
+    public function getQuantities()
+    {
+        return $this->quantities;
+    }
+
+    public function __construct()
+    {
+        $this->quantities = new ArrayCollection();
+    }
+
+    /**
+     * Add quantities
+     *
+     * @param \F4\LibraryBundle\Entity\Quantity $quantities
+     * @return Book
+     */
+    public function addQuantity(\F4\LibraryBundle\Entity\Quantity $quantities)
+    {
+        $this->quantities[] = $quantities;
+
+        return $this;
+    }
+
+    /**
+     * Remove quantities
+     *
+     * @param \F4\LibraryBundle\Entity\Quantity $quantities
+     */
+    public function removeQuantity(\F4\LibraryBundle\Entity\Quantity $quantities)
+    {
+        $this->quantities->removeElement($quantities);
     }
 }

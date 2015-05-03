@@ -1,11 +1,12 @@
 <?php
 namespace F4\LibraryBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use F4\LibraryBundle\Entity\Book;
 
-class BookFixtures implements FixtureInterface
+class BookFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -64,6 +65,17 @@ class BookFixtures implements FixtureInterface
         $manager->persist($book6);
 
         $manager->flush();
+
+        $this->addReference('book-1', $book1);
+        $this->addReference('book-2', $book2);
+        $this->addReference('book-3', $book3);
+        $this->addReference('book-4', $book4);
+        $this->addReference('book-5', $book5);
+        $this->addReference('book-6', $book6);
+    }
+
+    public function getOrder() {
+        return 1;
     }
 
 }

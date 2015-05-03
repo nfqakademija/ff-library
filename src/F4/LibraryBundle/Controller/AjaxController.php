@@ -40,8 +40,11 @@ class AjaxController extends Controller
             $qArgs['setMaxResults'] = 9;
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $total = $em->getRepository('F4LibraryBundle:Book')->getBookList($qArgs, 1);
+        $em = $this->getDoctrine()
+                    ->getManager();
+
+        $total = $em->getRepository('F4LibraryBundle:Book')
+                    ->getBookList($qArgs, 1);
 
         $pages = ceil($total / $qArgs['setMaxResults']);
 
@@ -51,7 +54,9 @@ class AjaxController extends Controller
 
         $qArgs['setFirstResult'] = $page * $qArgs['setMaxResults'] - $qArgs['setMaxResults'];
 
-        $books = $em->getRepository('F4LibraryBundle:Book')->getBookList($qArgs);
+        $books = $em->getRepository('F4LibraryBundle:Book')
+                    ->getBookList($qArgs);
+
         return new JsonResponse(array('list' => $this->renderView('F4LibraryBundle:Book:list.html.twig',
             array(
                 'books' => $books,
