@@ -13,3 +13,4 @@
 /.idea/
 .DS_Store
 /app/config/parameters.yml
+/app/DoctrineMigrations/
