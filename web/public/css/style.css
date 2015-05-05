@@ -452,6 +452,14 @@ span.paging {
     font-size: 12px;
 }
 
+p.author {
+    clear: both;
+}
+
+p.author {
+    padding-bottom: 5px;
+}
+
 p.author span {
     display: block;
 }
@@ -464,7 +472,7 @@ p.author span.role {
 p.author img {
     width: 50px;
     height: 66px;
-    margin-right: 10px;
+    margin: 0 10px 5px 0;
     border: 1px solid #5e5e5e;
 }
 
@@ -484,7 +492,6 @@ div.book-title h4 {
 .row-vertical-align {
     display: table;
     width: 100%;
-    /* fix overflow */
     table-layout: fixed;
 }
 .row-vertical-align [class*='col'] {
@@ -494,4 +501,29 @@ div.book-title h4 {
 
 .row-vertical-align .col-middle {
     vertical-align: middle;
+}
+
+.reviews p {
+    font-size: 14px;
+}
+
+.reviews blockquote.negative {
+    border-color: #a94442;
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.reviews blockquote.positive {
+    border-color: #5cb85c;
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.reviews footer {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.reviews div.write-options {
+    padding: 10px;
 }
