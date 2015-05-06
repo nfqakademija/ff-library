@@ -35,8 +35,18 @@ function ajaxLoad(url, tab) {
         });
 }
 
-$(document).ready(function () {/* off-canvas sidebar toggle */
+function initRating(rating) {
+    $('i.rating').removeClass('text-success text-danger');
+    if (rating == 1) {
+        $('i.rating.glyphicon-thumbs-up').addClass('text-success');
+        $('input[name="rating"]').val(1);
+    } else {
+        $('i.rating.glyphicon-thumbs-down').addClass('text-danger');
+        $('input[name="rating"]').val(2);
+    }
+}
 
+$(document).ready(function () {/* off-canvas sidebar toggle */
     $('[data-toggle=offcanvas]').click(function () {
         $(this).toggleClass('visible-xs text-center');
         $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
