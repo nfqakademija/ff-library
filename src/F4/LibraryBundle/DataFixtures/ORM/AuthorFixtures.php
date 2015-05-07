@@ -14,15 +14,11 @@ class AuthorFixtures extends AbstractFixture implements OrderedFixtureInterface
         $author1->setName('Roman Dirge');
         $author1->setPhoto('https://d.gr-assets.com/authors/1303760965p2/45461.jpg');
         $author1->setBornAt('1972/04/29');
-        //$author1->setDiedAt('');
-        //$author1->setHometown('');
         $manager->persist($author1);
 
         $author2 = new Author();
         $author2->setName('Tim O\'Reilly');
         $author2->setPhoto('https://d.gr-assets.com/authors/1199698411p2/18541.jpg');
-        //$author2->setBornAt('');
-        //$author2->setDiedAt('');
         $author2->setHometown('Ireland, Cork');
         $manager->persist($author2);
 

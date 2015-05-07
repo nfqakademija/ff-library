@@ -47,6 +47,8 @@ class AjaxController extends Controller
 
     public function Pagination($count, $limit, $page)
     {
+        $result = array();
+
         if ($limit % 3 == 0 && $limit < 100) {
             $result['limit'] = $limit;
         } else {
