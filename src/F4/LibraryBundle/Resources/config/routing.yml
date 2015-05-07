@@ -7,21 +7,21 @@ F4LibraryBundle_homepage:
 
 F4LibraryBundle_book:
     pattern:  /book/{id}
-    defaults: { _controller: F4LibraryBundle:Book:show }
+    defaults: { _controller: F4LibraryBundle:Page:bookPage }
     requirements:
         _method:  GET
         id: \d+
 
 F4LibraryBundle_tag:
     pattern:  /tag/{id}
-    defaults: { _controller: F4LibraryBundle:Tag:show }
+    defaults: { _controller: F4LibraryBundle:Page:tagPage }
     requirements:
         _method:  GET
         id: \d+
 
 F4LibraryBundle_author:
     pattern:  /author/{id}
-    defaults: { _controller: F4LibraryBundle:Author:show }
+    defaults: { _controller: F4LibraryBundle:Page:authorPage }
     requirements:
         _method:  GET
         id: \d+
