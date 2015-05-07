@@ -44,5 +44,9 @@ monolog:
 assetic:
     use_controller: true
 
+twig:
+    cache: false
+    debug: true
+
 #swiftmailer:
 #    delivery_address: me@example.com
