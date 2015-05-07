@@ -1,0 +1,22 @@
+{% extends 'F4LibraryBundle::layout.html.twig' %}
+
+{% block title %}Žymė: {{ tag.fullName }}{% endblock %}
+
+{% block content %}
+    <div class="panel with-nav-tabs panel-default">
+        <div class="panel-heading"><button type="button" class="btn btn-md btn-info">{{ tag.fullName }}</button></div>
+        <div class="panel-body ajaxList">
+            {% include 'F4LibraryBundle:Tools:loading.html.twig' %}
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1default"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        initBookList('{{ path('F4LibraryBundle_ajax_call', {list: 'tag', uid: app.request.get('id') }) }}', '#tab1default');
+    </script>
+{% endblock %}
