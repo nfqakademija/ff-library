@@ -39,7 +39,7 @@ class PageController extends Controller
         ));
     }
 
-    public function bookPageController($id)
+    public function bookPageAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $book = $em->getRepository('F4LibraryBundle:Book')->find($id);
