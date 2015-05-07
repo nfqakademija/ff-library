@@ -1,5 +1,4 @@
 <?php
-// src/F4/LibraryBundle/Controller/PageController.php
 
 namespace F4\LibraryBundle\Controller;
 
@@ -9,9 +8,6 @@ class PageController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('F4LibraryBundle:Page:index.html.twig', array(
-            'books' => null,
-            'pages' => null
-        ));
+        return $this->render('F4LibraryBundle:Page:index.html.twig');
     }
 }
