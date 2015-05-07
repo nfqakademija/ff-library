@@ -28,11 +28,6 @@ class Book
     protected $title;
 
     /**
-     * @ORM\Column(type="string", length=256)
-     */
-    protected $author;
-
-    /**
      * @ORM\Column(type="date")
      */
     protected $releaseDate;
@@ -43,14 +38,42 @@ class Book
     protected $description;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="books")
+     * @ORM\JoinTable(name="books_tags")
+     */
+    protected $tags;
+
+    /**
      * @ORM\OneToMany(targetEntity="Quantity", mappedBy="book")
      */
     protected $quantities;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Author", inversedBy="books")
+     * @ORM\JoinTable(name="books_authors")
+     */
+    protected $authors;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="book")
+     */
+    protected $reviews;
+
+    /**
      * @ORM\Column(type="string", length=256)
      */
     protected $image;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->quantities = new ArrayCollection();
+        $this->authors = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -106,29 +129,6 @@ class Book
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set author
-     *
-     * @param string $author
-     * @return Book
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string 
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
     /**
@@ -200,21 +200,6 @@ class Book
         return $this->image;
     }
 
-    public function addQuantities(Quantity $quantity)
-    {
-        $this->quantities[] = $quantity;
-    }
-
-    public function getQuantities()
-    {
-        return $this->quantities;
-    }
-
-    public function __construct()
-    {
-        $this->quantities = new ArrayCollection();
-    }
-
     /**
      * Add quantities
      *
@@ -236,5 +221,114 @@ class Book
     public function removeQuantity(\F4\LibraryBundle\Entity\Quantity $quantities)
     {
         $this->quantities->removeElement($quantities);
+    }
+
+    /**
+     * Get quantities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuantities()
+    {
+        return $this->quantities;
+    }
+
+    /**
+     * Add authors
+     *
+     * @param \F4\LibraryBundle\Entity\Author $authors
+     * @return Book
+     */
+    public function addAuthor(\F4\LibraryBundle\Entity\Author $authors)
+    {
+        $this->authors[] = $authors;
+
+        return $this;
+    }
+
+    /**
+     * Remove authors
+     *
+     * @param \F4\LibraryBundle\Entity\Author $authors
+     */
+    public function removeAuthor(\F4\LibraryBundle\Entity\Author $authors)
+    {
+        $this->authors->removeElement($authors);
+    }
+
+    /**
+     * Get authors
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
+
+    /**
+     * Add reviews
+     *
+     * @param \F4\LibraryBundle\Entity\Review $reviews
+     * @return Book
+     */
+    public function addReview(\F4\LibraryBundle\Entity\Review $reviews)
+    {
+        $this->reviews[] = $reviews;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviews
+     *
+     * @param \F4\LibraryBundle\Entity\Review $reviews
+     */
+    public function removeReview(\F4\LibraryBundle\Entity\Review $reviews)
+    {
+        $this->reviews->removeElement($reviews);
+    }
+
+    /**
+     * Get reviews
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \F4\LibraryBundle\Entity\Tag $tags
+     * @return Book
+     */
+    public function addTag(\F4\LibraryBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \F4\LibraryBundle\Entity\Tag $tags
+     */
+    public function removeTag(\F4\LibraryBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

@@ -6,16 +6,20 @@
             </div>
             <div class="right-side">
                 <p class="book-info">
-                    <span class="book-title">{{ book.title }}</span>
-                    <span class="book-author">{{ book.author }}</span>
-                    <span class="release-date">{{ book.releaseDate|date("Y-m-d") }}</span>
+                    <span class="book-title"><a href="{{ path('F4LibraryBundle_book', { 'id': book.id }) }}">{{ book.title }}</a></span>
+                    <span class="book-author">
+                        <a href="{{ path('F4LibraryBundle_author', { id: book.authors[0].id }) }}">{{ book.authors[0].name }}</a>
+                    </span>
+                    {% if book.tags[0].id is defined %}
+                    <span class="release-date">
+                       <a href="{{ path('F4LibraryBundle_tag', { id: book.tags[0].id })}}" class="btn btn-xs btn-default">{{ book.tags[0].fullName }}</button></a>
+                    </span>
+                    {% endif %}
                 </p>
 
                 <p class="button-pos">
-                    <a href="{{ path('F4LibraryBundle_book', { 'id': book.id }) }}" role="button"
-                       class="btn btn-default btn-sm pull-right">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        Rezervuoti
+                    <a href="{{ path('F4LibraryBundle_book', { 'id': book.id }) }}" class="btn btn-success btn-sm pull-right">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"> </span> Rezervuoti
                     </a>
                 </p>
             </div>
@@ -25,9 +29,9 @@
     {% endfor %}
 </div>
 
-{% if pages > 1 %}
+{% if pagination.pages > 1 %}
     <hr>
     <ul class="pager">
-        {% include 'F4LibraryBundle:Book:pagination.html.twig' with {'pages': pages} %}
+        {% include 'F4LibraryBundle:Tools:pagination.html.twig' with {'pagination': pagination} %}
     </ul>
 {% endif %}

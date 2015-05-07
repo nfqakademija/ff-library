@@ -9,58 +9,69 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AjaxController extends Controller
 {
-    public function listAction(Request $request, $list = 'popular', $page = 1, $limit = 9)
+    public function listBooksAction(Request $request, $list, $limit, $page, $uid)
     {
         if (!$request->isXmlHttpRequest()) {
             return new Response('This is not ajax!', 400);
         }
 
-        $qArgs = Array();
         switch ($list) {
-            case 'popular':
-                $qArgs['addOrderBy'] = 'releaseDate';
-                break;
-
             case 'newest':
-                $qArgs['addOrderBy'] = 'title';
+                $function = 'getNewestBooks';
                 break;
 
-            case 'soon':
-                $qArgs['addOrderBy'] = 'author';
+            case 'tag':
+                $function = 'getBooksByTag';
+                break;
+
+            case 'author':
+                $function = 'getBooksByAuthor';
                 break;
 
             default:
-                $qArgs['addOrderBy'] = 'releaseDate';
+                $function = 'getNewestBooks';
                 break;
         }
 
-        if ($limit % 3 == 0 && $limit < 100) {
-            $qArgs['setMaxResults'] = $limit;
-        } else {
-            $qArgs['setMaxResults'] = 9;
-        }
+        $em = $this->getDoctrine()->getManager();
 
-        $em = $this->getDoctrine()
-                    ->getManager();
-
-        $total = $em->getRepository('F4LibraryBundle:Book')
-                    ->getBookList($qArgs, 1);
-
-        $pages = ceil($total / $qArgs['setMaxResults']);
-
-        if ($page < 1 || $page > $pages) {
-            $page = 1;
-        }
-
-        $qArgs['setFirstResult'] = $page * $qArgs['setMaxResults'] - $qArgs['setMaxResults'];
-
-        $books = $em->getRepository('F4LibraryBundle:Book')
-                    ->getBookList($qArgs);
+        $pagination = $this->Pagination($em->getRepository('F4LibraryBundle:Book')->$function($uid), $limit, $page);
+        $books = $em->getRepository('F4LibraryBundle:Book')->$function($uid, $pagination);
 
         return new JsonResponse(array('list' => $this->renderView('F4LibraryBundle:Book:list.html.twig',
             array(
                 'books' => $books,
-                'pages' => $pages
+                'pagination' => $pagination
             ))), 200);
+    }
+
+    public function Pagination($count, $limit, $page)
+    {
+        if ($limit % 3 == 0 && $limit < 100) {
+            $result['limit'] = $limit;
+        } else {
+            $result['limit'] = 9;
+        }
+
+        $result['pages'] = ceil($count / $result['limit']);
+
+        if ($page < 1 || $page > $result['pages']) {
+            $result['page'] = 1;
+        } else {
+            $result['page'] = $page;
+        }
+
+        $result['to'] = $result['page'] * $result['limit'];
+        $result['offset'] = $result['to'] - $result['limit'];
+
+        if ($result['offset'] <= 0) {
+            $result['from'] = 1;
+        } else {
+            $result['from'] = $result['offset'];
+        }
+
+        $result['total'] = $count;
+
+        return $result;
     }
 }

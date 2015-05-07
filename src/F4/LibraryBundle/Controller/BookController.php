@@ -15,7 +15,7 @@ class BookController extends Controller
             throw $this->createNotFoundException('Knyga nerasta.');
         }
 
-        return $this->render('F4LibraryBundle:Book:details.html.twig', array(
+        return $this->render('F4LibraryBundle:Book:book.html.twig', array(
             'book' => $book,
         ));
     }

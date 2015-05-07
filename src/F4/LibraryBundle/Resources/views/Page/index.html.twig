@@ -1,28 +1,26 @@
-{# src/F4/LibraryBundle/Resources/views/Page/index.html.twig #}
 {% extends 'F4LibraryBundle::layout.html.twig' %}
-{% block title %}Main page{% endblock %}
+
+{% block title %}Titulinis{% endblock %}
 
 {% block content %}
     <div class="panel with-nav-tabs panel-default">
         <div class="tab-selection">
             <ul class="nav nav-tabs">
-                <li class="active"><a style="border:0" href="#tab1default" data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'popular', page: 1, limit: 3}) }}" data-toggle="tab" id="ajaxList">Skaitomiausios</a></li>
-                <li><a style="border:0" href="#tab2default" data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'newest', page: 1, limit: 9}) }}" data-toggle="tab" id="ajaxList">Naujausios</a></li>
-                <li><a style="border:0" href="#tab3default" data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'soon', page: 1, limit: 9}) }}" data-toggle="tab" id="ajaxList">Greitai atsilaisvins</a></li>
+                <li class="active"><a style="border:0" href="#tab1default"
+                                      data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'newest'}) }}"
+                                      data-toggle="tab" id="ajaxList">Naujausios</a></li>
+                <li><a style="border:0" href="#tab2default"
+                       data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'popular'}) }}"
+                       data-toggle="tab" id="ajaxList">Skaitomiausios</a></li>
+                <li><a style="border:0" href="#tab3default"
+                       data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'soon'}) }}"
+                       data-toggle="tab" id="ajaxList">Greitai atsilaisvins</a></li>
             </ul>
         </div>
         <div class="panel-body ajaxList">
-            <div class="hidden spinner">
-                <div class="rect1"></div>
-                <div class="rect2"></div>
-                <div class="rect3"></div>
-                <div class="rect4"></div>
-                <div class="rect5"></div>
-            </div>
+            {% include 'F4LibraryBundle:Tools:loading.html.twig' %}
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="tab1default">
-                    {% include 'F4LibraryBundle:Book:list.html.twig' with {'books': books, 'pages': pages} %}
-                </div>
+                <div class="tab-pane fade in active" id="tab1default"></div>
                 <div class="tab-pane fade" id="tab2default"></div>
                 <div class="tab-pane fade" id="tab3default"></div>
             </div>
@@ -33,6 +31,6 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        initBookList();
+        initBookList('{{ path('F4LibraryBundle_ajax_call', {list: 'newest'}) }}', '#tab1default');
     </script>
 {% endblock %}

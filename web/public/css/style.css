@@ -334,7 +334,7 @@ span.n-counter {
 }
 
 .book-floater {
-    width: 32.3%;
+    width: 32%;
     height: auto;
     border: 1px solid #ddd;
     background: #f9f9f9;
@@ -350,7 +350,6 @@ span.n-counter {
 }
 
 .book-floater .left-side {
-    width: 125px;
     height: 100%;
     line-height: 100%;
     float: left;
@@ -368,8 +367,17 @@ span.n-counter {
 }
 
 .book-floater .right-side p.book-info span.book-title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
+    padding-bottom: 2px;
+}
+
+.book-floater .right-side p.book-info span.book-title a {
+    color: #0088CC;
+}
+
+.book-floater .right-side p.book-info span.book-title a:hover {
+    color: #006699;
 }
 
 .book-floater .right-side p.book-info span.book-author {
@@ -454,33 +462,26 @@ span.paging {
 
 p.author {
     clear: both;
-}
-
-p.author {
-    padding-bottom: 5px;
+    display: block;
 }
 
 p.author span {
     display: block;
-}
-
-p.author span.role {
-    font-style: italic;
-    font-size: 12px;
+    padding: 7px 0;
 }
 
 p.author img {
     width: 50px;
     height: 66px;
-    margin: 0 10px 5px 0;
+    margin: 0 15px 10px 0;
     border: 1px solid #5e5e5e;
 }
 
-div.book-title {
+div.small-title {
     padding: 5px 15px;
 }
 
-div.book-title h4 {
+div.small-title h4 {
     font-size: 22px;
 }
 
@@ -526,4 +527,19 @@ div.book-title h4 {
 
 .reviews div.write-options {
     padding: 10px;
+}
+
+.author span.name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.author span.date {
+    font-size: 10px;
+    color: #5e5e5e;
+}
+
+.author span.hometown {
+    font-size: 14px;
+    display: block;
 }

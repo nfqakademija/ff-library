@@ -5,33 +5,55 @@ use Doctrine\ORM\EntityRepository;
 
 class BookRepository extends EntityRepository
 {
-    public function getBookList($param, $count = null)
+    public function getNewestBooks($id = null, $param = null)
     {
-        if (!array_key_exists('alias', $param))
-            $param['alias'] = 'b';
+        if (true === is_null($param)) {
+            $result = count($this->findBy(array(), array('releaseDate' => 'ASC'), 90));
+        } else {
+            $result = $this->findBy(array(), array('releaseDate' => 'ASC'), $param['limit'], $param['offset']);
+        }
+        return $result;
+    }
 
-        $q = $this->createQueryBuilder($param['alias']);
+    public function getBooksByTag($id, $param = null)
+    {
+        $result = $this->createQueryBuilder('b');
+        $result->innerJoin('b.tags', 't', 'WITH', 't.id = :tagId')
+            ->setParameter('tagId', $id);
 
-        if (false === is_null($count))
-            $q->select('count('.$param['alias'].')');
-        else
-            $q->select($param['alias']);
+        if (false === is_null($param)) {
+            if (array_key_exists('limit', $param)) {
+                $result->setMaxResults($param['limit']);
+            }
 
-        if (array_key_exists('where', $param))
-            $q->where($param['alias'].'.'.$param['where']);
+            if (array_key_exists('offset', $param)) {
+                $result->setFirstResult($param['offset']);
+            }
+            return $result->getQuery()->getResult();
+        } else {
+            $result->select('count(b.id)');
+            return $result->getQuery()->getSingleScalarResult();
+        }
+    }
 
-        if (array_key_exists('addOrderBy', $param))
-            $q->addOrderBy($param['alias'].'.'.$param['addOrderBy'], 'ASC');
+    public function getBooksByAuthor($id, $param = null)
+    {
+        $result = $this->createQueryBuilder('b');
+        $result->innerJoin('b.authors', 'a', 'WITH', 'a.id = :authorId')
+            ->setParameter('authorId', $id);
 
-        if (array_key_exists('setMaxResults', $param))
-            $q->setMaxResults($param['setMaxResults']);
+        if (false === is_null($param)) {
+            if (array_key_exists('limit', $param)) {
+                $result->setMaxResults($param['limit']);
+            }
 
-        if (array_key_exists('setFirstResult', $param))
-            $q->setFirstResult($param['setFirstResult']);
-
-        if (false === is_null($count))
-            return $q->getQuery()->getSingleScalarResult();
-        else
-            return $q->getQuery()->getResult();
+            if (array_key_exists('offset', $param)) {
+                $result->setFirstResult($param['offset']);
+            }
+            return $result->getQuery()->getResult();
+        } else {
+            $result->select('count(b.id)');
+            return $result->getQuery()->getSingleScalarResult();
+        }
     }
 }

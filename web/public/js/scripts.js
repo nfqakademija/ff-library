@@ -1,6 +1,5 @@
-function initBookList() {
-    var loader = $('#ajaxList').first();
-    ajaxLoad(loader.attr('data-href'), loader.attr('href'));
+function initBookList(url, tab) {
+    ajaxLoad(url, tab);
 
     $(document).on('click', '#ajaxList', function (e) {
         e.preventDefault();
