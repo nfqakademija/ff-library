@@ -41,12 +41,21 @@ function initRating(rating) {
         $('input[name="rating"]').val(1);
     } else {
         $('i.rating.glyphicon-thumbs-down').addClass('text-danger');
-        $('input[name="rating"]').val(2);
+        $('input[name="rating"]').val(0);
     }
 }
 
-$(document).ready(function () {/* off-canvas sidebar toggle */
-    $('[data-toggle=offcanvas]').click(function () {
+$(document).ready(function () {
+    $(document).on('click', '.btn-submit-form', function (e) {
+        var rating = $('input[name="rating"]').val();
+
+        if (rating > 1 || rating < 0) {
+            e.preventDefault();
+            $('.text-danger').removeClass('fade');
+        }
+    });
+
+    $(document).on('click', '[data-toggle=offcanvas]', function () {
         $(this).toggleClass('visible-xs text-center');
         $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
         $('.row-offcanvas').toggleClass('active');
