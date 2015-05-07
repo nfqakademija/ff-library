@@ -1,0 +1,37 @@
+{% extends 'F4LibraryBundle::layout.html.twig' %}
+
+{% block title %}Autorius: {{ author.name }}{% endblock %}
+
+{% block content %}
+    <div class="well small-title author">
+        <div class="row row-no-padding row-vertical-align">
+            <div class="col-md-1">
+                <img src="{{ author.photo }}" alt="{{ author.name }}">
+            </div>
+            <div class="col-md-11 col-middle">
+                <span class="name">{{ author.name }}</span>
+                <span class="date">{{ author.bornAt is not null ? '(' ~ author.bornAt ~ (author.diedAt is not null ? ' - ' ~ author.diedAt ~ ')' : ')') }}</span>
+                {% if author.hometown is not null %}
+                    <span class="hometown">{{ author.hometown }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="panel with-nav-tabs panel-default">
+        <div class="panel-heading"><h4>Autoriaus kūryba</h4></div>
+        <div class="panel-body ajaxList">
+            {% include 'F4LibraryBundle:Tools:loading.html.twig' %}
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1default"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        initBookList('{{ path('F4LibraryBundle_ajax_call', {list: 'author', uid: app.request.get('id') }) }}', '#tab1default');
+    </script>
+{% endblock %}
