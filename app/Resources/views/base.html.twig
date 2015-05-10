@@ -141,10 +141,10 @@
                                                 class="glyphicon glyphicon-chevron-down"
                                                 style="font-size:12px;"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="">Mano profilis</a></li>
+                                        <li><a href="{{ path('fos_user_profile_show') }}">Mano profilis</a></li>
                                         <li><a href="">Mano knygos</a></li>
-                                        <li><a href="">Profilio nustatymai</a></li>
-                                        <li><a href="">Atsijungti</a></li>
+                                        <li><a href="{{ path('fos_user_profile_edit') }}">Profilio nustatymai</a></li>
+                                        <li><a href="{{ path('fos_user_security_logout') }}">Atsijungti</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">

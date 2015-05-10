@@ -10,9 +10,9 @@ security:
                 always_use_default_target_path: true
                 provider: fos_userbundle
                 check_path: /login_check
-                login_path: /login
+                login_path: fos_user_security_login
             logout:
-                path: /logout
+                path: fos_user_security_logout
                 target: /
             anonymous: ~
 
