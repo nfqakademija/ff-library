@@ -1,8 +1,25 @@
 {# src/F4/UserBundle/Resources/views/layout.html.twig #}
-{% extends '::base.html.twig' %}
-
-{% block title %}Prisijungimas{% endblock %}
-
-{% block content %}
-    {% block fos_user_content %}{% endblock %}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8"/>
+    <title>{% block title %}Prisijungimas{% endblock %} - Library system by NFQ FF Team</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="generator" content="Bootply"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {% block stylesheets %}
+        <link href="{{ asset('public/css/bootstrap.min.css', absolute=true) }}" rel="stylesheet"/>
+        <link href="{{ asset('public/css/login.css', absolute=true) }}" rel="stylesheet"/>
+    {% endblock %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div class="container">
+    {% block content %}
+        {% block fos_user_content %}{% endblock %}
+    {% endblock %}
+</div>
+</body>
+</html>
