@@ -132,20 +132,12 @@
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="{{ path('F4LibraryBundle_homepage') }}"><i class="glyphicon glyphicon-home" style="margin-right:5px;"></i>
+                                    <a href="{{ path('F4LibraryBundle_homepage') }}"><i class="glyphicon glyphicon-home"
+                                                                                        style="margin-right:5px;"></i>
                                         Pagrindinis</a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="username">Jim Carrey</span>
-                                        <i class="glyphicon glyphicon-user"></i> <i
-                                                class="glyphicon glyphicon-chevron-down"
-                                                style="font-size:12px;"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path('fos_user_profile_show') }}">Mano profilis</a></li>
-                                        <li><a href="">Mano knygos</a></li>
-                                        <li><a href="{{ path('fos_user_profile_edit') }}">Profilio nustatymai</a></li>
-                                        <li><a href="{{ path('fos_user_security_logout') }}">Atsijungti</a></li>
-                                    </ul>
+                                    {% include 'F4UserBundle:Tools:user_block.html.twig' %}
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -198,16 +190,11 @@
                 {% endblock %}
 
                 <div class="padding">
-                    <div class="full col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                {% block content %} {% endblock %}
-                            </div>
-                        </div>
-                        <hr>
+                    <div class="full col-sm-12">
+                        {% block content %} {% endblock %}
                         <div class="row" id="footer">
                             <div class="col-sm-12">
-                                <a href="#" class="pull-right">© Copyright 2015 NFQ FF Team</a>
+                                <span class="pull-right">© Copyright 2015 NFQ FF Team</span>
                             </div>
                         </div>
                     </div>

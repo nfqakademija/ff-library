@@ -1,6 +1,46 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+<div class="col-md-3">
+    <div class="panel panel-default profile-sidebar">
+        <div class="profile-userpic">
+            <img src="{{ asset('public/img/avatar.jpg') }}"
+                 class="img-responsive" alt="">
+        </div>
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+                {{ app.user.username }}
+            </div>
+        </div>
+        <div class="profile-usermenu">
+            <ul class="nav">
+                <li class="active">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Profilio peržiūra </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Paskyros nustatymai </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">
+                        <i class="glyphicon glyphicon-bell"></i>
+                        Pranešimai </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-flag"></i>
+                        Help </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-9">
+    <div class="panel panel-default profile-content">
+        <div class="panel-body">
+            <p>{{ 'profile.show.email'|trans }}: {{ app.user.email }}</p>
+        </div>
+    </div>
 </div>
