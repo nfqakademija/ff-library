@@ -12,14 +12,14 @@ class ReviewFixtures extends AbstractFixture implements OrderedFixtureInterface
     {
         $review1 = new Review();
         $review1->setRating('1');
-        $review1->setUser('Anonimas');
+        $review1->setUser($manager->merge($this->getReference('user')));
         $review1->setBook($manager->merge($this->getReference('book-1')));
         $review1->setReview('Nuostabi knyga, rekomenduoju visiems.');
         $manager->persist($review1);
 
         $review2 = new Review();
         $review2->setRating('0');
-        $review2->setUser('Rimtas anonimas');
+        $review2->setUser($manager->merge($this->getReference('user')));
         $review2->setBook($manager->merge($this->getReference('book-1')));
         $review2->setReview('Parašyčiau kur kas geriau.');
         $manager->persist($review2);
@@ -28,7 +28,7 @@ class ReviewFixtures extends AbstractFixture implements OrderedFixtureInterface
     }
 
     public function getOrder() {
-        return 5;
+        return 6;
     }
 
 }
