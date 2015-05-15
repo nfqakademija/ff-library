@@ -613,3 +613,7 @@ div.small-title h4 {
 .profile-content {
     min-height: 460px;
 }
+
+.profile-content .panel-body {
+    font-size: 12px;
+}

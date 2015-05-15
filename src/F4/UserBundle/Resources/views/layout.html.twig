@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html" charset=utf-8"/>
     <title>{% block title %}Prisijungimas{% endblock %} - Library system by NFQ FF Team</title>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,9 +17,7 @@
 </head>
 <body>
 <div class="container">
-    {% block content %}
-        {% block fos_user_content %}{% endblock %}
-    {% endblock %}
+    {% block fos_user_content %}{% endblock %}
 </div>
 </body>
 </html>

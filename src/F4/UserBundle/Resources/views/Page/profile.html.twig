@@ -1,0 +1,42 @@
+{% extends "F4LibraryBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="col-md-3">
+        <div class="panel panel-default profile-sidebar">
+            <div class="profile-userpic">
+                <img src="{{ asset('public/img/avatar.jpg') }}"
+                     class="img-responsive" alt="">
+            </div>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">
+                    {{ app.user.username }}
+                </div>
+            </div>
+            <div class="profile-usermenu">
+                <ul class="nav">
+                    {% set route = app.request.attributes.get('_route') %}
+                    {% if route == 'fos_user_profile_show' %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('fos_user_profile_show') }}">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Profilio peržiūra </a>
+                    </li>
+                    {% if (route == 'fos_user_profile_edit') or (route == 'fos_user_change_password') %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('fos_user_profile_edit') }}">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Paskyros nustatymai </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="panel panel-default profile-content">
+            {% block profile_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
