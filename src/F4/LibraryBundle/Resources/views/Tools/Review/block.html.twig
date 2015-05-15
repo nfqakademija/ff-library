@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+    <div class="tab-selection">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a style="font-size:15px;" href="#tab1default"
+                   data-toggle="tab">Atsiliepimai apie knygą</a></li>
+            <li>
+                <a style="font-size:15px;" href="#tab2default" data-toggle="tab">Parašyti
+                    atsiliepimą</a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content reviews">
+            <div class="tab-pane fade in active" id="tab1default">
+                {% for review in reviews %}
+                    <blockquote class="{{ (review.rating == 1) ? 'positive': 'negative' }}">
+                        <p>{{ review.review }}</p>
+                        <footer>- {{ review.user.username }}</footer>
+                    </blockquote>
+                {% else %}
+                    <blockquote>
+                        <p>Atsiliepimų nėra. Palikite atsiliepimą pirmas!</p>
+                    </blockquote>
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade ajax-content" id="tab2default">
+                {% render(controller('F4LibraryBundle:Review:form', {'book_id': book_id} )) %}
+            </div>
+        </div>
+    </div>
+</div>

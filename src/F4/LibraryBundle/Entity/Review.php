@@ -2,6 +2,8 @@
 namespace F4\LibraryBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity(repositoryClass="F4\LibraryBundle\Entity\Repository\ReviewRepository")
@@ -18,7 +20,7 @@ class Review
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="F4\UserBundle\Entity\User", inversedBy="reviews")
      */
     protected $user;
 
@@ -52,6 +54,13 @@ class Review
     {
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('review', new NotBlank(array(
+            'message' => 'Užpildykite atsiliepimo lauką.'
+        )));
     }
 
     /**

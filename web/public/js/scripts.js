@@ -34,8 +34,26 @@ function ajaxLoad(url, tab) {
         });
 }
 
+function postForm($form, callback) {
+    var values = {};
+
+    $.each($form.serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+    });
+
+    $.ajax({
+        type: $form.attr('method'),
+        url: $form.attr('action'),
+        data: values,
+        success: function (data) {
+            callback(data);
+        }
+    });
+}
+
 function initRating(rating) {
     $('i.rating').removeClass('text-success text-danger');
+
     if (rating == 1) {
         $('i.rating.glyphicon-thumbs-up').addClass('text-success');
         $('input[name="rating"]').val(1);
@@ -46,6 +64,24 @@ function initRating(rating) {
 }
 
 $(document).ready(function () {
+    var ajax_forms = [
+        '[ name="review"]'
+    ];
+
+    $(document).on('submit', (ajax_forms.join(',')), function (e) {
+        e.preventDefault();
+
+        postForm($(this), function (response) {
+            if (response.result == 'success') {
+                location.reload();
+            } else {
+                $('.ajax-content').html(response.result);
+            }
+        });
+
+        return false;
+    });
+
     $(document).on('click', '.btn-submit-form', function (e) {
         var rating = $('input[name="rating"]').val();
 

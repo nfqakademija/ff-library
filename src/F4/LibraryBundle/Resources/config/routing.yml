@@ -35,3 +35,10 @@ F4LibraryBundle_ajax_call:
         limit: \d+
         page: \d+
         uid: \d+
+
+F4LibraryBundle_review_create:
+    pattern:  /review/{book_id}
+    defaults: { _controller: F4LibraryBundle:Review:create }
+    requirements:
+        _method:  POST
+        book_id: \d+

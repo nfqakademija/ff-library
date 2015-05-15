@@ -18,6 +18,11 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="F4\LibraryBundle\Entity\Review", mappedBy="user")
+     */
+    protected $reviews;
+
     public function __construct()
     {
         parent::__construct();
@@ -31,5 +36,38 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add reviews
+     *
+     * @param \F4\LibraryBundle\Entity\Review $reviews
+     * @return User
+     */
+    public function addReview(\F4\LibraryBundle\Entity\Review $reviews)
+    {
+        $this->reviews[] = $reviews;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviews
+     *
+     * @param \F4\LibraryBundle\Entity\Review $reviews
+     */
+    public function removeReview(\F4\LibraryBundle\Entity\Review $reviews)
+    {
+        $this->reviews->removeElement($reviews);
+    }
+
+    /**
+     * Get reviews
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
     }
 }

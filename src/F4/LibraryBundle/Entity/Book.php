@@ -75,6 +75,11 @@ class Book
         $this->tags = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     /**
      * Get id
      *

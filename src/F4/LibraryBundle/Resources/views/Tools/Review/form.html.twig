@@ -1,0 +1,19 @@
+<form name="review" action="{{ path('F4LibraryBundle_review_create', {'book_id': review.book.id} ) }}"
+      method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="hidden" name="rating" value="-1">
+
+    <div class="write-options">
+        <input class="btn btn-primary btn-sm pull-right btn-submit-form" type="submit" value="Pridėti atsiliepimą">
+        <ul class="list-inline">
+            <li><a onclick="initRating(1);return false;" href="#"><i
+                            class="rating glyphicon glyphicon-thumbs-up"></i></a></li>
+            <li><a onclick="initRating(0);return false;" href="#"><i
+                            class="rating glyphicon glyphicon-thumbs-down"></i></a></li>
+            <li class="small text-danger fade"><i
+                        class="glyphicon glyphicon-arrow-left"></i> Būtina pasirinkti
+                įvertinimą!
+            </li>
+        </ul>
+    </div>
+</form>
