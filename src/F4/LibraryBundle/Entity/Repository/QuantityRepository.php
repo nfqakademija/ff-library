@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuantityRepository extends EntityRepository
 {
+    public function getInStockQuantity($id)
+    {
+        $q = $this->createQueryBuilder('q')
+            ->leftJoin('F4LibraryBundle:Reservation', 'r', 'WITH', 'q.id = r.bookUnit')
+            ->where('q.book = :bookId AND r.bookUnit is NULL')
+            ->setParameter('bookId', $id)
+            ->setMaxResults(1);
+
+        $result = $q->getQuery()->getOneOrNullResult();
+
+        return $result;
+    }
 }
