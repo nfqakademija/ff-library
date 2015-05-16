@@ -65,7 +65,7 @@ function initRating(rating) {
 
 $(document).ready(function () {
     var ajax_forms = [
-        '[ name="review"]'
+        '[name="review"]'
     ];
 
     $(document).on('submit', (ajax_forms.join(',')), function (e) {
