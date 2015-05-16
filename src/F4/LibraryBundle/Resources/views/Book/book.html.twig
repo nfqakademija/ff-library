@@ -15,8 +15,8 @@
                 {% for author in book.authors %}
                     <p class="author">
                         <img src="{{ author.photo }}" align="left">
-                        <span><a href="{{ path('F4LibraryBundle_author', {id : author.id}) }}">{{ author.name }}</a></span>
-                        <a href="{{ path('F4LibraryBundle_author', {id : author.id}) }}" class="btn btn-xs btn-default"><i
+                        <span><a href="{{ path('F4LibraryBundle_author', {id: author.id}) }}">{{ author.name }}</a></span>
+                        <a href="{{ path('F4LibraryBundle_author', {id: author.id}) }}" class="btn btn-xs btn-default"><i
                                     class="glyphicon glyphicon-book" style="font-size: 11px;"></i> Kūryba</a>
                     </p>
                 {% endfor %}
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        {% include 'F4LibraryBundle:Tools:reviews.html.twig' with {'reviews': book.reviews} %}
+        {% include 'F4LibraryBundle:Tools/Review:block.html.twig' with {'reviews': book.reviews, 'book_id': book.id} %}
 
     </div>
 {% endblock %}

@@ -1,0 +1,8 @@
+{% extends "F4UserBundle:Page:profile.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block profile_content %}
+    <div class="panel-body">
+        <p>{{ 'profile.show.email'|trans }}: {{ app.user.email }}</p>
+    </div>
+{% endblock %}

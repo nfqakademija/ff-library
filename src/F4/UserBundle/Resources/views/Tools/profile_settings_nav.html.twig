@@ -1,0 +1,14 @@
+<div class="tab-selection">
+    <ul class="nav nav-tabs">
+        {% if route == 'fos_user_profile_edit' %}
+        <li class="active">{% else %}
+        <li>{% endif %}
+            <a href="{{ path('fos_user_profile_edit') }}">Profilio nustatymai</a>
+        </li>
+        {% if route == 'fos_user_change_password' %}
+        <li class="active">{% else %}
+        <li>{% endif %}
+            <a href="{{ path('fos_user_change_password') }}">Slaptažodžio keitimas</a>
+        </li>
+    </ul>
+</div>

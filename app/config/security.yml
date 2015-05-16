@@ -1,12 +1,30 @@
 security:
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
-            security: false
-
-        default:
+        main:
+            pattern: ^/
+            form_login:
+                always_use_default_target_path: true
+                provider: fos_userbundle
+                check_path: /login_check
+                login_path: fos_user_security_login
+            logout:
+                path: fos_user_security_logout
+                target: /
             anonymous: ~
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_USER: ROLE_USER
+        ROLE_ADMIN: ROLE_ADMIN
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /.*, role: ROLE_USER }

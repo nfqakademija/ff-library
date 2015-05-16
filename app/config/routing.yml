@@ -1,3 +1,7 @@
-f4_library:
+f4_user:
     resource: "@F4LibraryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+f4_library:
+    resource: "@F4UserBundle/Resources/config/routing.yml"
     prefix:   /

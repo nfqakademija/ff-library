@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new F4\LibraryBundle\F4LibraryBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new F4\UserBundle\F4UserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

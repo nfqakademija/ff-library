@@ -1,0 +1,20 @@
+{% extends "F4UserBundle:Page:profile.html.twig" %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block profile_content %}
+    {% include 'F4UserBundle:Tools:profile_settings_nav.html.twig' %}
+    <div class="panel-body">
+        <div class="col-md-7">
+            <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST"
+                  class="fos_user_profile_edit">
+                {{ form_widget(form) }}
+                <div>
+                    <input class="btn btn-sm btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-5">
+        </div>
+    </div>
+{% endblock %}
