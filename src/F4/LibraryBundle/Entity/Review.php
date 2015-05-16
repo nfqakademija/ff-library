@@ -21,6 +21,7 @@ class Review
 
     /**
      * @ORM\ManyToOne(targetEntity="F4\UserBundle\Entity\User", inversedBy="reviews")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
@@ -79,29 +80,6 @@ class Review
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param string $user
-     * @return Review
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return string 
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -194,6 +172,29 @@ class Review
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \F4\UserBundle\Entity\User $user
+     * @return Review
+     */
+    public function setUser(\F4\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \F4\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**

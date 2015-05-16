@@ -42,7 +42,7 @@ class Reservation
 
     public function __construct()
     {
-        $this->bookTaken = false;
+        $this->setBookTaken(true);
     }
 
     /**
@@ -53,6 +53,52 @@ class Reservation
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set bookTaken
+     *
+     * @param boolean $bookTaken
+     * @return Reservation
+     */
+    public function setBookTaken($bookTaken)
+    {
+        $this->bookTaken = $bookTaken;
+
+        return $this;
+    }
+
+    /**
+     * Get bookTaken
+     *
+     * @return boolean 
+     */
+    public function getBookTaken()
+    {
+        return $this->bookTaken;
+    }
+
+    /**
+     * Set book
+     *
+     * @param \F4\LibraryBundle\Entity\Book $book
+     * @return Reservation
+     */
+    public function setBook(\F4\LibraryBundle\Entity\Book $book = null)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \F4\LibraryBundle\Entity\Book 
+     */
+    public function getBook()
+    {
+        return $this->book;
     }
 
     /**
@@ -99,51 +145,5 @@ class Reservation
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set book
-     *
-     * @param \F4\LibraryBundle\Entity\Book $book
-     * @return Reservation
-     */
-    public function setBook(\F4\LibraryBundle\Entity\Book $book = null)
-    {
-        $this->book = $book;
-
-        return $this;
-    }
-
-    /**
-     * Get book
-     *
-     * @return \F4\LibraryBundle\Entity\Book 
-     */
-    public function getBook()
-    {
-        return $this->book;
-    }
-
-    /**
-     * Set bookTaken
-     *
-     * @param \bool $bookTaken
-     * @return Reservation
-     */
-    public function setBookTaken(\bool $bookTaken)
-    {
-        $this->bookTaken = $bookTaken;
-
-        return $this;
-    }
-
-    /**
-     * Get bookTaken
-     *
-     * @return \bool 
-     */
-    public function getBookTaken()
-    {
-        return $this->bookTaken;
     }
 }
