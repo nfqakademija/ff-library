@@ -29,7 +29,7 @@ function ajaxLoad(url, tab) {
             $(tab).html(data.list);
             $('.tab-content').removeClass('hidden');
         })
-        .fail(function (jqXHR, textStatus, errorThrown) {
+        .fail(function (errorThrown) {
             alert(errorThrown);
         });
 }
@@ -64,15 +64,30 @@ function initRating(rating) {
 }
 
 $(document).ready(function () {
-    var ajax_forms = [
-        '[name="review"]'
-    ];
 
-    $(document).on('submit', (ajax_forms.join(',')), function (e) {
+    /* Review form. */
+    $(document).on('submit', 'form[name="review"]', function (e) {
         e.preventDefault();
 
+        var rating = $('input[name="rating"]').val();
+        var review = $('textarea[name="f4_librarybundle_review[review]"]').val();
+
+        if (rating > 1 || rating < 0) {
+            $('li.text-danger').removeClass('fade');
+            return false;
+        } else {
+            $('li.text-danger').addClass('fade');
+        }
+
+        if (review.length < 1) {
+            $('div.form-group').addClass('has-error');
+            return false;
+        }
+
+        $(this).find('input[type="submit"]').addClass('disabled');
+
         postForm($(this), function (response) {
-            if (response.result == 'success') {
+            if (response.result === 'success') {
                 location.reload();
             } else {
                 $('.ajax-content').html(response.result);
@@ -80,15 +95,6 @@ $(document).ready(function () {
         });
 
         return false;
-    });
-
-    $(document).on('click', '.btn-submit-form', function (e) {
-        var rating = $('input[name="rating"]').val();
-
-        if (rating > 1 || rating < 0) {
-            e.preventDefault();
-            $('.text-danger').removeClass('fade');
-        }
     });
 
     $(document).on('click', '[data-toggle=offcanvas]', function () {
