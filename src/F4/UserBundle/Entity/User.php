@@ -23,6 +23,12 @@ class User extends BaseUser
      */
     protected $reviews;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="F4\LibraryBundle\Entity\Book")
+     * @ORM\JoinTable(name="user_read_books")
+     */
+    protected $readBooks;
+
     public function __construct()
     {
         parent::__construct();
@@ -69,5 +75,38 @@ class User extends BaseUser
     public function getReviews()
     {
         return $this->reviews;
+    }
+
+    /**
+     * Add readBooks
+     *
+     * @param \F4\LibraryBundle\Entity\Book $readBooks
+     * @return User
+     */
+    public function addReadBook(\F4\LibraryBundle\Entity\Book $readBooks)
+    {
+        $this->readBooks[] = $readBooks;
+
+        return $this;
+    }
+
+    /**
+     * Remove readBooks
+     *
+     * @param \F4\LibraryBundle\Entity\Book $readBooks
+     */
+    public function removeReadBook(\F4\LibraryBundle\Entity\Book $readBooks)
+    {
+        $this->readBooks->removeElement($readBooks);
+    }
+
+    /**
+     * Get readBooks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReadBooks()
+    {
+        return $this->readBooks;
     }
 }

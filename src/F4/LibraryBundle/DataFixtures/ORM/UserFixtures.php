@@ -16,6 +16,8 @@ class UserFixtures extends AbstractFixture implements OrderedFixtureInterface
         $user->setEmail('demo@demo.com');
         $user->setPlainPassword('demo');
         $user->setEnabled(true);
+        $user->addReadBook($manager->merge($this->getReference('book-1')));
+        $user->addReadBook($manager->merge($this->getReference('book-4')));
 
         $manager->persist($user);
         $manager->flush();
