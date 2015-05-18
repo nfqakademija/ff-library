@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use F4\LibraryBundle\Services\Pagination;
 
 class AjaxController extends Controller
 {
@@ -35,45 +36,14 @@ class AjaxController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $pagination = $this->Pagination($em->getRepository('F4LibraryBundle:Book')->$function($uid), $limit, $page);
-        $books = $em->getRepository('F4LibraryBundle:Book')->$function($uid, $pagination);
+        $pagination = new Pagination();
+        $paging = $pagination->getPagination($em->getRepository('F4LibraryBundle:Book')->$function($uid), $limit, $page);
+        $books = $em->getRepository('F4LibraryBundle:Book')->$function($uid, $paging);
 
         return new JsonResponse(array('list' => $this->renderView('F4LibraryBundle:Book:list.html.twig',
             array(
                 'books' => $books,
-                'pagination' => $pagination
+                'pagination' => $paging
             ))), 200);
-    }
-
-    public function Pagination($count, $limit, $page)
-    {
-        $result = array();
-
-        if ($limit % 3 == 0 && $limit < 100) {
-            $result['limit'] = $limit;
-        } else {
-            $result['limit'] = 9;
-        }
-
-        $result['pages'] = ceil($count / $result['limit']);
-
-        if ($page < 1 || $page > $result['pages']) {
-            $result['page'] = 1;
-        } else {
-            $result['page'] = $page;
-        }
-
-        $result['to'] = $result['page'] * $result['limit'];
-        $result['offset'] = $result['to'] - $result['limit'];
-
-        if ($result['offset'] <= 0) {
-            $result['from'] = 1;
-        } else {
-            $result['from'] = $result['offset'];
-        }
-
-        $result['total'] = $count;
-
-        return $result;
     }
 }

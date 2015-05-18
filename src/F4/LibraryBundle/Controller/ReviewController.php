@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use F4\LibraryBundle\Entity\Review;
 use F4\LibraryBundle\Form\ReviewType;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class ReviewController extends Controller
 {
@@ -23,23 +24,19 @@ class ReviewController extends Controller
         ));
     }
 
-    public function createAction($book_id)
+    public function createAction($book_id, Request $request)
     {
         $book = $this->getBook($book_id);
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        if (!$user) {
-            throw $this->createNotFoundException('Unable to find a User.');
-        }
-
         $review = new Review();
         $review->setBook($book);
         $review->setUser($user);
-        $review->setRating($this->checkRating($this->get('request')->request->get('rating')));
+        $review->setRating($this->checkRating($request->get('rating')));
 
-        $request = $this->getRequest();
         $form = $this->createForm(new ReviewType(), $review);
-        $form->Bind($request);
+
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()
