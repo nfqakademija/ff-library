@@ -16,7 +16,8 @@
                     <p class="author">
                         <img src="{{ author.photo }}" align="left">
                         <span><a href="{{ path('F4LibraryBundle_author', {id: author.id}) }}">{{ author.name }}</a></span>
-                        <a href="{{ path('F4LibraryBundle_author', {id: author.id}) }}" class="btn btn-xs btn-default"><i
+                        <a href="{{ path('F4LibraryBundle_author', {id: author.id}) }}"
+                           class="btn btn-xs btn-default"><i
                                     class="glyphicon glyphicon-book" style="font-size: 11px;"></i> Kūryba</a>
                     </p>
                 {% endfor %}
@@ -25,6 +26,27 @@
     </div>
 
     <div class="col-sm-9">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            {% if flashMessage == 'reserved' %}
+                <div class="alert alert-success">
+                    <strong>Pavyko!</strong> Knyga sėkmingai užrezervuota, nepamirškite ją atsiimti.
+                </div>
+            {% elseif flashMessage == 'removed' %}
+                <div class="alert alert-info">
+                    <strong>Rezervacija atšaukta!</strong> Rezervacija buvo sėkmingai atšaukta.
+                </div>
+            {% elseif flashMessage == 'delay' %}
+                <div class="alert alert-warning">
+                    <strong>Reikės palaukti!</strong> Šiuo metu knygos bibliotekoje nėra, mes Jums pranešime, kai ji
+                    atsilaisvins.
+                </div>
+            {% else %}
+                <div class="alert alert-danger">
+                    <strong>Įvyko klaida!</strong> Susisiekite su administracija.
+                </div>
+            {% endif %}
+        {% endfor %}
+
         <div class="well small-title">
             <div class="row row-no-padding row-vertical-align">
                 <div class="col-md-8">
@@ -40,7 +62,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 text-right col-middle">
-                    <button type="button" class="btn btn-success btn-sm">Rezervuoti knygą</button>
+                    {% render(controller('F4LibraryBundle:Reservation:form', {'book_id': book.id} )) %}
                 </div>
             </div>
         </div>

@@ -1,0 +1,11 @@
+{% if reservationStatus != 'taken' %}
+    <form name="reservation" action="{{ path('F4LibraryBundle_reserve_book', {'book_id': book_id} ) }}"
+          method="post" {{ form_enctype(reservationForm) }}>
+        {{ form_widget(reservationForm) }}
+        {% if reservationStatus == 'null' %}
+            <input type="submit" class="btn btn-success btn-sm" value="Rezervuoti knygą">
+        {% elseif reservationStatus == 'reserved' %}
+            <input type="submit" class="btn btn-warning btn-sm" value="Atšaukti rezervaciją">
+        {% endif %}
+    </form>
+{% endif %}

@@ -42,7 +42,7 @@ class Reservation
 
     public function __construct()
     {
-        $this->setBookTaken(true);
+        $this->setBookTaken(false);
     }
 
     /**

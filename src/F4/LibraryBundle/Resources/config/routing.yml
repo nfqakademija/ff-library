@@ -42,3 +42,10 @@ F4LibraryBundle_review_create:
     requirements:
         _method:  POST
         book_id: \d+
+
+F4LibraryBundle_reserve_book:
+    pattern:  /reserve/{book_id}
+    defaults: { _controller: F4LibraryBundle:Reservation:form }
+    requirements:
+        _method:  POST
+        book_id: \d+
