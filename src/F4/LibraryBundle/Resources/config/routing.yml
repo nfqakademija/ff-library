@@ -1,4 +1,3 @@
-# src/F4/LibraryBundle/Resources/config/routing.yml
 F4LibraryBundle_homepage:
     pattern:  /
     defaults: { _controller: F4LibraryBundle:Page:index }
