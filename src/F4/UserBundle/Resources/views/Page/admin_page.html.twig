@@ -1,0 +1,40 @@
+{% extends "F4LibraryBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="profile-usermenu" style="margin:0">
+                <ul class="nav">
+                    {% set route = app.request.attributes.get('_route') %}
+                    {% if route == 'user_books' %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('user_books') }}">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            Pridėti knygą </a>
+                    </li>
+                    {% if (route == 'fos_user_profile_edit') or (route == 'fos_user_change_password') %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('fos_user_profile_edit') }}">
+                            <i class="glyphicon glyphicon-book"></i>
+                            Knygų administravimas </a>
+                    </li>
+                    {% if route == 'fos_user_profile_show' %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('fos_user_profile_show') }}">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            Rezervacijos </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="panel panel-default profile-content">
+            {% block profile_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

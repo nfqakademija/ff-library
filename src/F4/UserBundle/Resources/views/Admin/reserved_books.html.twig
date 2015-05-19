@@ -1,0 +1,34 @@
+{% extends "F4UserBundle:Page:admin_page.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block profile_content %}
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Knygos pavadinimas</th>
+                <th>Autorius</th>
+                <th>Statusas</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for res in reservations %}
+                <tr>
+                    <td></td>
+                    <td><a href="{{ path('F4LibraryBundle_book', { 'id': res.book.id }) }}">{{ res.book.title }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('F4LibraryBundle_author', { 'id': res.book.authors[0].id }) }}">{{ res.book.authors[0].name }}</a>
+                    </td>
+                    <td></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Šiame skyriuje knygų nerasta...</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
