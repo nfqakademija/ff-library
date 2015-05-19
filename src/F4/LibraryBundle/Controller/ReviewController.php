@@ -54,7 +54,7 @@ class ReviewController extends Controller
             ))), 200);
     }
 
-    protected function checkRating($rating) {
+    public function checkRating($rating) {
         if ($rating > 1 || $rating < 0)
             $rating = 1;
 

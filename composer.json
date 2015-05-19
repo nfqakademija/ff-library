@@ -27,7 +27,8 @@
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/migrations": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "symfony/translation": "~2.6"
+        "symfony/translation": "~2.6",
+        "phpunit/phpunit": "4.6.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
