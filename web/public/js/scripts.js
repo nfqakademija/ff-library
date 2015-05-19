@@ -97,9 +97,9 @@ $(document).ready(function () {
         return false;
     });
 
-    $(document).on('click', '.form-control', function() {
+    $(document).on('click', '.search-bar', function() {
        alert('Ne šiandien...');
-        $('.navbar-left').addClass('fade');
+        $('.search-bar').addClass('fade');
     });
 
     $(document).on('click', '[data-toggle=offcanvas]', function () {
