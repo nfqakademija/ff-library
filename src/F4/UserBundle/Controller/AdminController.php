@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use F4\LibraryBundle\Services\BookManager;
 use F4\LibraryBundle\Entity\Book;
+use F4\LibraryBundle\Entity\Quantity;
 use F4\LibraryBundle\Entity\Author;
 use F4\LibraryBundle\Controller\ReservationController;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -63,7 +64,9 @@ class AdminController extends Controller
             ->add('isbn', 'text', array(
                 'label' => 'ISBN Kodas:'
             ))
-            ->getForm();
+            ->add('qnt', 'text', array(
+                'label' => 'Fizinių vienetų:'
+            ))            ->getForm();
 
         $form->handleRequest($request);
 
@@ -72,7 +75,7 @@ class AdminController extends Controller
             $book = new BookManager($data['isbn']);
 
             if (false === is_null($book->getTitle())) {
-                $this->createBook($book);
+                $this->createBook($book, $data['qnt']);
                 $this->addFlash(
                     'notice',
                     '200'
@@ -142,7 +145,7 @@ class AdminController extends Controller
         return $this->redirectToRoute('admin_taken_books');
     }
 
-    protected function createBook($book)
+    protected function createBook($book, $n = 1)
     {
         $em = $this->getDoctrine()
             ->getManager();
@@ -165,6 +168,13 @@ class AdminController extends Controller
             $b->setLargeImage($book->getLargeImage());
             $b->setSmallImage($book->getSmallImage());
             $b->setReleaseDate(new \DateTime());
+            for ($i = 0; $i < $n; $i++) {
+                $q = new Quantity();
+                $q->setSerial('1');
+                $q->setBook($b);
+                $em->persist($q);
+            }
+
             $em->persist($b);
             $em->flush();
         } else {

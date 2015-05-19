@@ -8,9 +8,9 @@ class BookRepository extends EntityRepository
     public function getNewestBooks($param = null)
     {
         if (array_key_exists('limit', $param)) {
-            $result = $this->findBy(array(), array('releaseDate' => 'ASC'), $param['limit'], $param['offset']);
+            $result = $this->findBy(array(), array('id' => 'DESC'), $param['limit'], $param['offset']);
         } else {
-            $result = count($this->findBy(array(), array('releaseDate' => 'ASC'), 90));
+            $result = count($this->findBy(array(), array('id' => 'DESC'), 90));
         }
         return $result;
     }
