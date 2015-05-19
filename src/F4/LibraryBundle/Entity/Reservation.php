@@ -40,9 +40,23 @@ class Reservation
      */
     protected $bookTaken;
 
+    /**
+     * @ORM\Column(name="reserved_at", type="datetime")
+     */
+    protected $reservedAt;
+
     public function __construct()
     {
         $this->setBookTaken(false);
+        $this->setReservedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+        $this->setReservedAt(new \DateTime());
     }
 
     /**
@@ -145,5 +159,28 @@ class Reservation
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set reservedAt
+     *
+     * @param \DateTime $reservedAt
+     * @return Reservation
+     */
+    public function setReservedAt($reservedAt)
+    {
+        $this->reservedAt = $reservedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get reservedAt
+     *
+     * @return \DateTime 
+     */
+    public function getReservedAt()
+    {
+        return $this->reservedAt;
     }
 }

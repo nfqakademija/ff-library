@@ -65,6 +65,16 @@ class Book
     protected $image;
 
     /**
+     * @ORM\Column(type="string", length=256)
+     */
+    protected $small_image;
+
+    /**
+     * @ORM\Column(type="string", length=256)
+     */
+    protected $large_image;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -335,5 +345,51 @@ class Book
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set small_image
+     *
+     * @param string $smallImage
+     * @return Book
+     */
+    public function setSmallImage($smallImage)
+    {
+        $this->small_image = $smallImage;
+
+        return $this;
+    }
+
+    /**
+     * Get small_image
+     *
+     * @return string 
+     */
+    public function getSmallImage()
+    {
+        return $this->small_image;
+    }
+
+    /**
+     * Set large_image
+     *
+     * @param string $largeImage
+     * @return Book
+     */
+    public function setLargeImage($largeImage)
+    {
+        $this->large_image = $largeImage;
+
+        return $this;
+    }
+
+    /**
+     * Get large_image
+     *
+     * @return string 
+     */
+    public function getLargeImage()
+    {
+        return $this->large_image;
     }
 }
