@@ -9,7 +9,8 @@
                 <th>#</th>
                 <th>Knygos pavadinimas</th>
                 <th>Autorius</th>
-                <th>Statusas</th>
+                <th>Vartotojas</th>
+                <th>Rezervavo</th>
             </tr>
             </thead>
             <tbody>
@@ -21,7 +22,8 @@
                     <td>
                         <a href="{{ path('F4LibraryBundle_author', { 'id': res.book.authors[0].id }) }}">{{ res.book.authors[0].name }}</a>
                     </td>
-                    <td></td>
+                    <td>{{ res.user }}</td>
+                    <td>{{ res.reservedAt|date("Y-m-d") }}</td>
                 </tr>
             {% else %}
                 <tr>

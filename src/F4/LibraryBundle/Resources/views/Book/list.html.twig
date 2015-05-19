@@ -5,7 +5,7 @@
                 <img src="{{ book.image }}" height="150">
             </div>
             <div class="right-side">
-                <p class="book-info">
+                <p class="book-info" style="width:200px;">
                     <span class="book-title"><a href="{{ path('F4LibraryBundle_book', { 'id': book.id }) }}">{{ book.title }}</a></span>
                     <span class="book-author">
                         <a href="{{ path('F4LibraryBundle_author', { id: book.authors[0].id }) }}">{{ book.authors[0].name }}</a>

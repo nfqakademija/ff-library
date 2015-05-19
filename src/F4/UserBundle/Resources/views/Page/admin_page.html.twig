@@ -6,14 +6,15 @@
             <div class="profile-usermenu" style="margin:0">
                 <ul class="nav">
                     {% set route = app.request.attributes.get('_route') %}
-                    {% if route == 'user_books' %}
+                    {% set list = app.request.get('list') %}
+                    {% if list == 'nnz' %}
                     <li class="active">{% else %}
                     <li>{% endif %}
-                        <a href="{{ path('user_books') }}">
+                        <a href="{{ path('admin_page') }}">
                             <i class="glyphicon glyphicon-plus"></i>
                             Pridėti knygą </a>
                     </li>
-                    {% if (route == 'fos_user_profile_edit') or (route == 'fos_user_change_password') %}
+                    {% if list == 'reserved' %}
                     <li class="active">{% else %}
                     <li>{% endif %}
                         <a href="{{ path('fos_user_profile_edit') }}">
