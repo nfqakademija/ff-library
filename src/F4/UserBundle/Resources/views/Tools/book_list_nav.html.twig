@@ -1,0 +1,19 @@
+<div class="tab-selection">
+    <ul class="nav nav-tabs">
+        {% if app.request.get('list') == 'reserved' %}
+        <li class="active">{% else %}
+        <li>{% endif %}
+            <a href="{{ path('user_books', {'list' : 'reserved'}) }}">Rezervuotos knygos</a>
+        </li>
+        {% if app.request.get('list') == 'taken' %}
+        <li class="active">{% else %}
+        <li>{% endif %}
+            <a href="{{ path('user_books', {'list' : 'taken'}) }}">Skaitomos knygos</a>
+        </li>
+        {% if route == 'fos_user_change_password' %}
+        <li class="active">{% else %}
+        <li>{% endif %}
+            <a href="{{ path('fos_user_change_password') }}">Perskaitytos knygos</a>
+        </li>
+    </ul>
+</div>

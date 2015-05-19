@@ -29,6 +29,13 @@
                             <i class="glyphicon glyphicon-user"></i>
                             Paskyros nustatymai </a>
                     </li>
+                    {% if route == 'user_books' %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('user_books') }}">
+                            <i class="glyphicon glyphicon-book"></i>
+                            Mano knygos </a>
+                    </li>
                 </ul>
             </div>
         </div>

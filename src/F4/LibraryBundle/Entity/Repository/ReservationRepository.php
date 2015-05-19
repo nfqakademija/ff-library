@@ -12,4 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReservationRepository extends EntityRepository
 {
+    public function getReservedBooks($user, $taken = false) {
+        $result = $this->findBy(array('user' => $user, 'bookTaken' => $taken), array('id' => 'DESC'));
+
+        return $result;
+    }
 }
