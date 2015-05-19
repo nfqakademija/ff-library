@@ -11,7 +11,9 @@
                 <th>Knygos pavadinimas</th>
                 <th>Autorius</th>
                 <th class="text-center">Rezervuota</th>
-                <th class="text-center">Būsena</th>
+                {% if app.request.get('list') != 'taken' %}
+                    <th class="text-center">Būsena</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -28,13 +30,15 @@
                     <td class="vert-align text-center">
                         {{ res.reservedAt|date("Y-m-d") }}
                     </td>
-                    <td class="vert-align text-center">
-                        {% if res.bookUnit is not null %}
-                            <span class="btn-sm btn-success">Galima atsiimti</span>
-                        {% else %}
-                            <span class="btn-sm btn-warning">Knyga užimta</span>
-                        {% endif %}
-                    </td>
+                    {% if app.request.get('list') != 'taken' %}
+                        <td class="vert-align text-center">
+                            {% if res.bookUnit is not null %}
+                                <span class="btn-sm btn-success">Galima atsiimti</span>
+                            {% else %}
+                                <span class="btn-sm btn-warning">Knyga užimta</span>
+                            {% endif %}
+                        </td>
+                    {% endif %}
                 </tr>
             {% else %}
                 <tr>

@@ -15,13 +15,6 @@
             <div class="profile-usermenu">
                 <ul class="nav">
                     {% set route = app.request.attributes.get('_route') %}
-                    {% if route == 'fos_user_profile_show' %}
-                    <li class="active">{% else %}
-                    <li>{% endif %}
-                        <a href="{{ path('fos_user_profile_show') }}">
-                            <i class="glyphicon glyphicon-home"></i>
-                            Profilio peržiūra </a>
-                    </li>
                     {% if (route == 'fos_user_profile_edit') or (route == 'fos_user_change_password') %}
                     <li class="active">{% else %}
                     <li>{% endif %}
