@@ -21,6 +21,10 @@ class AjaxController extends Controller
                 $function = 'getNewestBooks';
                 break;
 
+            case 'popular':
+                $function = 'getPositiveBooks';
+                break;
+
             case 'tag':
                 $function = 'getBooksByTag';
                 break;
@@ -37,13 +41,15 @@ class AjaxController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $pagination = new Pagination();
-        $paging = $pagination->getPagination($em->getRepository('F4LibraryBundle:Book')->$function($uid), $limit, $page);
-        $books = $em->getRepository('F4LibraryBundle:Book')->$function($uid, $paging);
+
+        $temp_param['uid'] = $uid;
+        $params = array_merge($pagination->getPagination($em->getRepository('F4LibraryBundle:Book')->$function($temp_param), $limit, $page), $temp_param);
+        $books = $em->getRepository('F4LibraryBundle:Book')->$function($params);
 
         return new JsonResponse(array('list' => $this->renderView('F4LibraryBundle:Book:list.html.twig',
             array(
                 'books' => $books,
-                'pagination' => $paging
+                'pagination' => $params
             ))), 200);
     }
 }

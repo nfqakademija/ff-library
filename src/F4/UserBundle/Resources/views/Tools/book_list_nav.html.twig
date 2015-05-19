@@ -10,10 +10,5 @@
         <li>{% endif %}
             <a href="{{ path('user_books', {'list' : 'taken'}) }}">Skaitomos knygos</a>
         </li>
-        {% if route == 'fos_user_change_password' %}
-        <li class="active">{% else %}
-        <li>{% endif %}
-            <a href="{{ path('fos_user_change_password') }}">Perskaitytos knygos</a>
-        </li>
     </ul>
 </div>

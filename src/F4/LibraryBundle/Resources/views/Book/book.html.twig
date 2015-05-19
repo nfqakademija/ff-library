@@ -67,12 +67,14 @@
             </div>
         </div>
 
+        {% if book.description is not null %}
         <div class="panel panel-default">
             <div class="panel-heading"><h4>Aprašymas</h4></div>
             <div class="panel-body">
-                {{ book.description }}
+                {{ book.description|raw }}
             </div>
         </div>
+        {% endif %}
 
         {% include 'F4LibraryBundle:Tools/Review:block.html.twig' with {'reviews': book.reviews, 'book_id': book.id} %}
 

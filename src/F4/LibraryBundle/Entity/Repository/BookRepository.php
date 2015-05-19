@@ -5,30 +5,45 @@ use Doctrine\ORM\EntityRepository;
 
 class BookRepository extends EntityRepository
 {
-    public function getNewestBooks($id = null, $param = null)
+    public function getNewestBooks($param = null)
     {
-        if (true === is_null($param)) {
-            $result = count($this->findBy(array(), array('releaseDate' => 'ASC'), 90));
-        } else {
+        if (array_key_exists('limit', $param)) {
             $result = $this->findBy(array(), array('releaseDate' => 'ASC'), $param['limit'], $param['offset']);
+        } else {
+            $result = count($this->findBy(array(), array('releaseDate' => 'ASC'), 90));
         }
         return $result;
     }
 
-    public function getBooksByTag($id, $param = null)
+    public function getPositiveBooks($param = null)
+    {
+        $result = $this->createQueryBuilder('b')
+            ->innerJoin('b.reviews', 'r');
+
+        if (array_key_exists('limit', $param)) {
+            $result->addSelect('sum(r.rating) AS HIDDEN total')
+                ->addOrderBy('total', 'DESC')
+                ->groupBy('r.book')
+                ->setMaxResults($param['limit'])
+                ->setFirstResult($param['offset']);
+
+            return $result->getQuery()->getResult();
+        } else {
+            $result->select('count(DISTINCT r.book)');
+            return $result->getQuery()->getSingleScalarResult();
+        }
+    }
+
+    public function getBooksByTag($param = null)
     {
         $result = $this->createQueryBuilder('b');
         $result->innerJoin('b.tags', 't', 'WITH', 't.id = :tagId')
-            ->setParameter('tagId', $id);
+            ->setParameter('tagId', $param['uid']);
 
-        if (false === is_null($param)) {
-            if (array_key_exists('limit', $param)) {
-                $result->setMaxResults($param['limit']);
-            }
+        if (array_key_exists('limit', $param)) {
+            $result->setMaxResults($param['limit'])
+                ->setFirstResult($param['offset']);
 
-            if (array_key_exists('offset', $param)) {
-                $result->setFirstResult($param['offset']);
-            }
             return $result->getQuery()->getResult();
         } else {
             $result->select('count(b.id)');
@@ -36,20 +51,16 @@ class BookRepository extends EntityRepository
         }
     }
 
-    public function getBooksByAuthor($id, $param = null)
+    public function getBooksByAuthor($param = null)
     {
         $result = $this->createQueryBuilder('b');
         $result->innerJoin('b.authors', 'a', 'WITH', 'a.id = :authorId')
-            ->setParameter('authorId', $id);
+            ->setParameter('authorId', $param['uid']);
 
-        if (false === is_null($param)) {
-            if (array_key_exists('limit', $param)) {
-                $result->setMaxResults($param['limit']);
-            }
+        if (array_key_exists('limit', $param)) {
+            $result->setMaxResults($param['limit'])
+                ->setFirstResult($param['offset']);
 
-            if (array_key_exists('offset', $param)) {
-                $result->setFirstResult($param['offset']);
-            }
             return $result->getQuery()->getResult();
         } else {
             $result->select('count(b.id)');

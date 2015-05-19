@@ -23,16 +23,13 @@ fos_user_security_logout:
 fos_user_security_login:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
+admin_page:
+    resource: "@F4UserBundle/Controller/AdminController.php"
+    type:     annotation
+
 user_books:
     pattern:  /my-books/{list}
     defaults: { _controller: F4UserBundle:Books:userBooks, list: reserved }
-    requirements:
-        _method:  GET
-        list: \S+
-
-adminPageAction:
-    pattern:  /admin/{list}
-    defaults: { _controller: F4UserBundle:Books:adminPage, list: reserved }
     requirements:
         _method:  GET
         list: \S+

@@ -1,6 +1,6 @@
 {% if is_granted("ROLE_USER") %}
     <li>
-        <a href="{{ path('F4LibraryBundle_homepage') }}">
+        <a href="{{ path('admin_reserved_books') }}">
             <i class="glyphicon glyphicon-lock" style="margin-right:5px;"></i>
             Administravimas</a>
     </li>
@@ -11,7 +11,6 @@
                 class="glyphicon glyphicon-chevron-down"
                 style="font-size:8px;"></i></a>
     <ul class="dropdown-menu">
-        <li><a href="{{ path('fos_user_profile_show') }}">Mano profilis</a></li>
         <li><a href="{{ path('user_books') }}">Mano knygos</a></li>
         <li><a href="{{ path('fos_user_profile_edit') }}">Profilio nustatymai</a></li>
         <li><a href="{{ path('fos_user_security_logout') }}">Atsijungti</a></li>

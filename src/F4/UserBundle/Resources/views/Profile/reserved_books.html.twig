@@ -7,26 +7,38 @@
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>#</th>
+                <th></th>
                 <th>Knygos pavadinimas</th>
                 <th>Autorius</th>
-                <th>Statusas</th>
+                <th class="text-center">Rezervuota</th>
+                <th class="text-center">Būsena</th>
             </tr>
             </thead>
             <tbody>
             {% for res in reservations %}
                 <tr>
-                    <td></td>
-                    <td><a href="{{ path('F4LibraryBundle_book', { 'id': res.book.id }) }}">{{ res.book.title }}</a>
+                    <td class="vert-align text-center" width="20" style="padding:0;">
+                        <img src="{{ res.book.smallImage }}" alt="{{ res.book.title }}" height="50"></td>
+                    <td class="vert-align">
+                        <a href="{{ path('F4LibraryBundle_book', { 'id': res.book.id }) }}">{{ res.book.title }}</a>
                     </td>
-                    <td>
+                    <td class="vert-align">
                         <a href="{{ path('F4LibraryBundle_author', { 'id': res.book.authors[0].id }) }}">{{ res.book.authors[0].name }}</a>
                     </td>
-                    <td></td>
+                    <td class="vert-align text-center">
+                        {{ res.reservedAt|date("Y-m-d") }}
+                    </td>
+                    <td class="vert-align text-center">
+                        {% if res.bookUnit is not null %}
+                            <span class="btn-sm btn-success">Galima atsiimti</span>
+                        {% else %}
+                            <span class="btn-sm btn-warning">Knyga užimta</span>
+                        {% endif %}
+                    </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">Šiame skyriuje knygų nerasta...</td>
+                    <td colspan="5">Šiame skyriuje knygų nerasta...</td>
                 </tr>
             {% endfor %}
             </tbody>

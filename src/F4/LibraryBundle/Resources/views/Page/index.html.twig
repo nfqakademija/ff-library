@@ -6,15 +6,16 @@
     <div class="panel with-nav-tabs panel-default">
         <div class="tab-selection">
             <ul class="nav nav-tabs">
-                <li class="active"><a style="border:0" href="#tab1default"
-                                      data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'newest'}) }}"
-                                      data-toggle="tab" id="ajaxList">Naujausios</a></li>
-                <li><a style="border:0" href="#tab2default"
+                <li class="active">
+                    <a style="border:0" href="#tab1default"
+                       data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'newest'}) }}"
+                       data-toggle="tab" id="ajaxList">Naujausios</a>
+                </li>
+                <li>
+                    <a style="border:0" href="#tab2default"
                        data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'popular'}) }}"
-                       data-toggle="tab" id="ajaxList">Skaitomiausios</a></li>
-                <li><a style="border:0" href="#tab3default"
-                       data-href="{{ path('F4LibraryBundle_ajax_call', {list: 'soon'}) }}"
-                       data-toggle="tab" id="ajaxList">Greitai atsilaisvins</a></li>
+                       data-toggle="tab" id="ajaxList">Geriausiai įvertintos</a>
+                </li>
             </ul>
         </div>
         <div class="panel-body ajaxList">

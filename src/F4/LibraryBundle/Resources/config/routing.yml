@@ -27,7 +27,7 @@ F4LibraryBundle_author:
 
 F4LibraryBundle_ajax_call:
     pattern:  /ajax/{list}/{limit}/{page}/{uid}
-    defaults: { _controller: F4LibraryBundle:Ajax:listBooks, uid: 0, limit: 3, page: 1 }
+    defaults: { _controller: F4LibraryBundle:Ajax:listBooks, uid: 0, limit: 9, page: 1 }
     requirements:
         _method:  GET
         list: \w+

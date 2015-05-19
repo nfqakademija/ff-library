@@ -337,10 +337,31 @@ span.n-counter {
     width: 32%;
     height: auto;
     border: 1px solid #ddd;
-    background: #f9f9f9;
-    margin: 5px;
+    background: #FDFDFD;
+    margin: 10px 5px;
     float: left;
     position: relative;
+    -webkit-box-shadow: rgb(204, 204, 204) 0px 0px 7px 0px;
+}
+
+.book-floater .button-pos {
+    visibility: hidden;
+}
+
+.book-floater:hover {
+    background: #ECFDF6;
+    border-color: #168CCC;
+    -webkit-background-clip: border-box;
+    -webkit-background-origin: padding-box;
+    -webkit-background-size: auto;
+    -webkit-transition-delay: 0s;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-property: all;
+    -webkit-transition-timing-function: ease;
+}
+
+.book-floater:hover .button-pos {
+    visibility: visible;
 }
 
 .book-floater .button-pos {
@@ -353,13 +374,17 @@ span.n-counter {
     height: 100%;
     line-height: 100%;
     float: left;
-    border-right: 1px solid #ddd;
-    text-align: center;
+    text-align: left;
+}
+
+.book-floater .left-side img {
+    width: 100px;
+    height: 140px;
 }
 
 .book-floater .right-side {
     float: left;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .book-floater .right-side p.book-info span {
@@ -616,4 +641,8 @@ div.small-title h4 {
 
 .profile-content .panel-body {
     font-size: 12px;
+}
+
+.table tbody>tr>td.vert-align {
+    vertical-align: middle;
 }
