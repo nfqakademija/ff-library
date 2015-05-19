@@ -97,6 +97,11 @@ $(document).ready(function () {
         return false;
     });
 
+    $(document).on('click', '.form-control', function() {
+       alert('Ne šiandien...');
+        $('.navbar-left').addClass('fade');
+    });
+
     $(document).on('click', '[data-toggle=offcanvas]', function () {
         $(this).toggleClass('visible-xs text-center');
         $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
