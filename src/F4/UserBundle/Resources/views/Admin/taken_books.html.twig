@@ -3,13 +3,13 @@
 
 {% block profile_content %}
     <div class="panel-heading">
-        <h4>Rezervavimas</h4>
+        <h4>Grąžinimas</h4>
     </div>
     <div class="panel-body">
         {% for flashMessage in app.session.flashbag.get('notice') %}
             {% if flashMessage == '200' %}
                 <div class="alert alert-success">
-                    <strong>Pavyko!</strong> Knyga sėkmingai išduota.
+                    <strong>Pavyko!</strong> Knyga sėkmingai grąžinta.
                 </div>
             {% endif %}
         {% endfor %}
@@ -20,7 +20,7 @@
                 <th>Knygos pavadinimas</th>
                 <th>Autorius</th>
                 <th class="text-center">Vartotojas</th>
-                <th class="text-center">Rezervavo</th>
+                <th class="text-center">Atsiemė</th>
                 <th class="text-center">Veiksmai</th>
             </tr>
             </thead>
@@ -42,12 +42,8 @@
                         {{ res.reservedAt|date("Y-m-d") }}
                     </td>
                     <td class="vert-align text-center">
-                        {% if res.bookUnit is not null %}
-                            <a href="{{ path('admin_give_book', {id : res.id}) }}" class="btn btn-xs btn-success"
-                               title="Pažymėti knygą kaip išduotą">Išduoti</a>
-                        {% else %}
-                            <span class="btn-xs btn-primary">trūksta vienetų</span>
-                        {% endif %}
+                        <a href="{{ path('admin_return_book', {id : res.id}) }}" class="btn btn-xs btn-success"
+                           title="Pažymėti knygą kaip grąžintą">Grąžinti</a>
                     </td>
                 </tr>
             {% else %}

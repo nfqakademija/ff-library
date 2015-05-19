@@ -7,26 +7,26 @@
                 <ul class="nav">
                     {% set route = app.request.attributes.get('_route') %}
                     {% set list = app.request.get('list') %}
-                    {% if list == 'nnz' %}
+                    {% if route == 'admin_add_book' %}
                     <li class="active">{% else %}
                     <li>{% endif %}
-                        <a href="{{ path('admin_page') }}">
+                        <a href="{{ path('admin_add_book') }}">
                             <i class="glyphicon glyphicon-plus"></i>
                             Pridėti knygą </a>
                     </li>
-                    {% if list == 'reserved' %}
+                    {% if route == 'admin_reserved_books' %}
                     <li class="active">{% else %}
                     <li>{% endif %}
-                        <a href="{{ path('fos_user_profile_edit') }}">
-                            <i class="glyphicon glyphicon-book"></i>
-                            Knygų administravimas </a>
-                    </li>
-                    {% if route == 'fos_user_profile_show' %}
-                    <li class="active">{% else %}
-                    <li>{% endif %}
-                        <a href="{{ path('fos_user_profile_show') }}">
+                        <a href="{{ path('admin_reserved_books') }}">
                             <i class="glyphicon glyphicon-calendar"></i>
-                            Rezervacijos </a>
+                            Rezervavimas </a>
+                    </li>
+                    {% if route == 'admin_taken_books' %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('admin_taken_books') }}">
+                            <i class="glyphicon glyphicon-list-alt"></i>
+                            Grąžinimas </a>
                     </li>
                 </ul>
             </div>

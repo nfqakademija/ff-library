@@ -1,0 +1,28 @@
+{% extends "F4UserBundle:Page:admin_page.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block profile_content %}
+    <div class="panel-heading">
+        <h4>Knygos pridėjimas</h4>
+    </div>
+    <div class="panel-body">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            {% if flashMessage == '404' %}
+                <div class="alert alert-danger">
+                    <strong>Knyga nerasta!</strong> Patikrinkite ar teisingai suvedėte ISBN numerį.
+                </div>
+            {% elseif flashMessage == '200' %}
+                <div class="alert alert-success">
+                    <strong>Pavyko!</strong> Knyga sėkmingai pridėta.
+                </div>
+            {% endif %}
+        {% endfor %}
+        <form action="{{ path('admin_add_book') }}"
+              method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input class="btn btn-sm btn-primary" type="submit" value="Pridėti knygą">
+        </form>
+
+    </div>
+{% endblock %}
